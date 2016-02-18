@@ -3,7 +3,7 @@ using StatusBoard.Core.Models;
 
 namespace StatusBoard.Core.IRepositories
 {
-    public interface IServerRepository
+    public interface IServerRepository : IRepository<Server>
     {
         void Add(Server server);
         void Edit(Server server);

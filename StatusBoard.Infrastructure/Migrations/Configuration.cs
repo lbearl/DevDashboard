@@ -1,18 +1,15 @@
 namespace StatusBoard.Infrastructure.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<StatusBoard.Infrastructure.DbContext.ServerContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Infrastructure.DbContext.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(StatusBoard.Infrastructure.DbContext.ServerContext context)
+        protected override void Seed(Infrastructure.DbContext.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

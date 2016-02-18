@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using StatusBoard.Core.Models;
 using StatusBoard.Infrastructure.DbContext;
@@ -13,12 +9,17 @@ namespace StatusBoard.Web.Controllers
 {
     public class ServersController : Controller
     {
-        private ServerContext db = new ServerContext();
+        private ApplicationDbContext _dbContext;
+
+        public ServersController(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         // GET: Servers
         public ActionResult Index()
         {
-            return View(db.Servers.ToList());
+            return View(_dbContext.Servers.ToList());
         }
 
         // GET: Servers/Details/5
@@ -28,7 +29,7 @@ namespace StatusBoard.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Server server = db.Servers.Find(id);
+            Server server = _dbContext.Servers.Find(id);
             if (server == null)
             {
                 return HttpNotFound();
@@ -51,8 +52,8 @@ namespace StatusBoard.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Servers.Add(server);
-                db.SaveChanges();
+                _dbContext.Servers.Add(server);
+                _dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +67,7 @@ namespace StatusBoard.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Server server = db.Servers.Find(id);
+            Server server = _dbContext.Servers.Find(id);
             if (server == null)
             {
                 return HttpNotFound();
@@ -83,8 +84,8 @@ namespace StatusBoard.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(server).State = EntityState.Modified;
-                db.SaveChanges();
+                _dbContext.Entry(server).State = EntityState.Modified;
+                _dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(server);
@@ -97,7 +98,7 @@ namespace StatusBoard.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Server server = db.Servers.Find(id);
+            Server server = _dbContext.Servers.Find(id);
             if (server == null)
             {
                 return HttpNotFound();
@@ -110,9 +111,9 @@ namespace StatusBoard.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Server server = db.Servers.Find(id);
-            db.Servers.Remove(server);
-            db.SaveChanges();
+            Server server = _dbContext.Servers.Find(id);
+            _dbContext.Servers.Remove(server);
+            _dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +121,7 @@ namespace StatusBoard.Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _dbContext.Dispose();
             }
             base.Dispose(disposing);
         }

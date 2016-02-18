@@ -42,20 +42,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="IRepositories\Identity\IRoleRepository.cs" />
+    <Compile Include="IRepositories\Identity\IUserRepository.cs" />
+    <Compile Include="IRepositories\IRepository.cs" />
     <Compile Include="IRepositories\IServerRepository.cs" />
     <Compile Include="IServices\IBambooStatusService.cs" />
     <Compile Include="IServices\IJiraStatusService.cs" />
     <Compile Include="IServices\IServerStatusService.cs" />
+    <Compile Include="IServices\IUnitOfWork.cs" />
     <Compile Include="Models\Components\DevStatus\CIStatus.cs" />
     <Compile Include="Models\Components\DevStatus\JiraStatus.cs" />
     <Compile Include="Models\Components\ServerStatus\PingStatus.cs" />
     <Compile Include="Models\Components\ServerStatus\SSLCertificateStatus.cs" />
     <Compile Include="Models\Components\ServiceStatus.cs" />
     <Compile Include="Models\DevStatus.cs" />
+    <Compile Include="Models\Identity\Role.cs" />
+    <Compile Include="Models\Identity\User.cs" />
     <Compile Include="Models\Server.cs" />
     <Compile Include="Models\ServerStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
