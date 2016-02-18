@@ -15,6 +15,12 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using Microsoft.AspNet.Identity;
+using StatusBoard.Core.IServices;
+using StatusBoard.Infrastructure;
+using StatusBoard.Web.Identity;
+
 namespace StatusBoard.Web.DependencyResolution {
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
@@ -22,7 +28,11 @@ namespace StatusBoard.Web.DependencyResolution {
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
 
-        public DefaultRegistry() {
+        public DefaultRegistry()
+        {
+
+            For<IUnitOfWork>().Use<UnitOfWork>().Ctor<string>().Is("default");
+            For<IUserStore<IdentityUser, Guid>>().Use<UserStore>();
             Scan(
                 scan => {
                     scan.TheCallingAssembly();

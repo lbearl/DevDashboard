@@ -168,14 +168,6 @@ namespace StatusBoard.Web.Controllers
         }
 
 
-        [ChildActionOnly]
-        public ActionResult RemoveAccountList()
-        {
-            var linkedAccounts = _userManager.GetLogins(getGuid(User.Identity.GetUserId()));
-            ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
-            return (ActionResult)PartialView("_RemoveAccountPartial", linkedAccounts);
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)
