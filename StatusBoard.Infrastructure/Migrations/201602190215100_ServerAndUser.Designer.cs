@@ -7,13 +7,13 @@ namespace StatusBoard.Infrastructure.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class ServerAndUser : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ServerAndUser));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602171711433_Initial"; }
+            get { return "201602190215100_ServerAndUser"; }
         }
         
         string IMigrationMetadata.Source

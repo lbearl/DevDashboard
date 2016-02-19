@@ -61,9 +61,9 @@
     <Compile Include="DbContext\ApplicationDbContext.cs" />
     <Compile Include="EFConfiguration\RoleConfiguration.cs" />
     <Compile Include="EFConfiguration\UserConfiguration.cs" />
-    <Compile Include="Migrations\201602171711433_Initial.cs" />
-    <Compile Include="Migrations\201602171711433_Initial.Designer.cs">
-      <DependentUpon>201602171711433_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602190215100_ServerAndUser.cs" />
+    <Compile Include="Migrations\201602190215100_ServerAndUser.Designer.cs">
+      <DependentUpon>201602190215100_ServerAndUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,8 +84,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602171711433_Initial.resx">
-      <DependentUpon>201602171711433_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602190215100_ServerAndUser.resx">
+      <DependentUpon>201602190215100_ServerAndUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
