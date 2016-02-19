@@ -20,10 +20,7 @@ namespace StatusBoard.Infrastructure.Repositories
             _context = context;
         }
 
-        protected DbSet<TEntity> Set
-        {
-            get { return _set ?? (_set = _context.Set<TEntity>()); }
-        }
+        protected DbSet<TEntity> Set => _set ?? (_set = _context.Set<TEntity>());
 
         public List<TEntity> GetAll()
         {

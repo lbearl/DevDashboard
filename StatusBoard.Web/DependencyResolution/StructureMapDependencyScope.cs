@@ -106,7 +106,7 @@ namespace StatusBoard.Web.DependencyResolution {
         }
 
         protected override object DoGetInstance(Type serviceType, string key) {
-            IContainer container = (CurrentNestedContainer ?? Container);
+            var container = (CurrentNestedContainer ?? Container);
 
             if (string.IsNullOrEmpty(key)) {
                 return serviceType.IsAbstract || serviceType.IsInterface

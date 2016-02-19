@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using StatusBoard.Core.IRepositories;
 using StatusBoard.Core.IRepositories.Identity;
 
 namespace StatusBoard.Core.IServices
@@ -16,6 +17,7 @@ namespace StatusBoard.Core.IServices
         //This violates SOLID: specifically the Open/Close principal
         IRoleRepository RoleRepository { get; }
         IUserRepository UserRepository { get; }
+        IServerRepository ServerRepository { get; }
         #endregion
 
         #region Methods

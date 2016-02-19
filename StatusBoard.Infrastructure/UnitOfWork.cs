@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StatusBoard.Core.IRepositories;
 using StatusBoard.Core.IRepositories.Identity;
 using StatusBoard.Core.IServices;
+using StatusBoard.Core.Models;
 using StatusBoard.Infrastructure.DbContext;
+using StatusBoard.Infrastructure.Repositories;
 using StatusBoard.Infrastructure.Repositories.Identity;
 
 namespace StatusBoard.Infrastructure
@@ -16,6 +19,7 @@ namespace StatusBoard.Infrastructure
         private readonly ApplicationDbContext _context;
         private IRoleRepository _roleRepository;
         private IUserRepository _userRepository;
+        private IServerRepository _serverRepository;
         #endregion
 
         #region Constructors
@@ -27,15 +31,11 @@ namespace StatusBoard.Infrastructure
 
         #region IUnitOfWork Members
 
-        public IRoleRepository RoleRepository
-        {
-            get { return _roleRepository ?? (_roleRepository = new RoleRepository(_context)); }
-        }
+        public IRoleRepository RoleRepository => _roleRepository ?? (_roleRepository = new RoleRepository(_context));
 
-        public IUserRepository UserRepository
-        {
-            get { return _userRepository ?? (_userRepository = new UserRepository(_context)); }
-        }
+        public IUserRepository UserRepository => _userRepository ?? (_userRepository = new UserRepository(_context));
+
+        public IServerRepository ServerRepository => _serverRepository ?? (_serverRepository = new ServerRepository(_context));
 
         public int SaveChanges()
         {

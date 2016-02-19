@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using StatusBoard.Core.Models;
 
 namespace StatusBoard.Core.IRepositories
 {
     public interface IServerRepository : IRepository<Server>
     {
-        void Add(Server server);
-        void Edit(Server server);
-        void Remove(int id);
-        IEnumerable<Server> GetServers();
-        Server FindById(int id);
     }
 }
