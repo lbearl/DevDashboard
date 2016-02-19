@@ -48,6 +48,7 @@
     <Compile Include="IRepositories\IServerRepository.cs" />
     <Compile Include="IServices\IBambooStatusService.cs" />
     <Compile Include="IServices\IJiraStatusService.cs" />
+    <Compile Include="IServices\IPingService.cs" />
     <Compile Include="IServices\IServerStatusService.cs" />
     <Compile Include="IServices\IUnitOfWork.cs" />
     <Compile Include="Models\Components\DevStatus\CIStatus.cs" />

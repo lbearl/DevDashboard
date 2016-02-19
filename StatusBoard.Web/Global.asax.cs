@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using CommonServiceLocator.StructureMapAdapter.Unofficial;
+using Microsoft.Practices.ServiceLocation;
 
 namespace StatusBoard.Web
 {

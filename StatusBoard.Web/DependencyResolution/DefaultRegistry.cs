@@ -19,7 +19,7 @@ using System;
 using Microsoft.AspNet.Identity;
 using StatusBoard.Core.IServices;
 using StatusBoard.Infrastructure;
-using StatusBoard.Infrastructure.DbContext;
+using StatusBoard.Infrastructure.Services;
 using StatusBoard.Web.Identity;
 
 namespace StatusBoard.Web.DependencyResolution {
@@ -34,13 +34,14 @@ namespace StatusBoard.Web.DependencyResolution {
 
             For<IUnitOfWork>().Use<UnitOfWork>().Ctor<string>().Is("default");
             For<IUserStore<IdentityUser, Guid>>().Use<UserStore>();
+            For<IPingService>().Use<HttpPingService>();
             Scan(
                 scan => {
                     scan.TheCallingAssembly();
+                    scan.Assembly("StatusBoard.Infrastructure");
                     scan.WithDefaultConventions();
 					scan.With(new ControllerConvention());
                 });
-            //For<IExample>().Use<Example>();
         }
 
         #endregion

@@ -10,6 +10,8 @@ using Microsoft.Owin.Host.SystemWeb;
 
 namespace StatusBoard.Web.Controllers
 {
+    // Note that this is basically just stock code, I only changed a few things to remove things that I'm not using and didn't
+    // feel like implementing (i.e. 2FA, OAuth (3rd party) login, etc).
     [Authorize]
     public class AccountController : Controller
     {

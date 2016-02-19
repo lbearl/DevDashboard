@@ -16,12 +16,17 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
+using CommonServiceLocator.StructureMapAdapter.Unofficial;
+using Microsoft.Practices.ServiceLocation;
+
 namespace StatusBoard.Web.DependencyResolution {
     using StructureMap;
 	
     public static class IoC {
         public static IContainer Initialize() {
-            return new Container(c => c.AddRegistry<DefaultRegistry>());
+            var container = new Container(c => c.AddRegistry<DefaultRegistry>());
+            ServiceLocator.SetLocatorProvider(() => new StructureMapServiceLocator(container));
+            return container;
         }
     }
 }
