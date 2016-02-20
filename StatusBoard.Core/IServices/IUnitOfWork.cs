@@ -14,10 +14,10 @@ namespace StatusBoard.Core.IServices
     public interface IUnitOfWork : IDisposable
     {
         #region Properties
-        //This violates SOLID: specifically the Open/Close principal
         IRoleRepository RoleRepository { get; }
         IUserRepository UserRepository { get; }
         IServerRepository ServerRepository { get; }
+        IServiceHistoryRepository ServiceHistoryRepository { get; }
         #endregion
 
         #region Methods

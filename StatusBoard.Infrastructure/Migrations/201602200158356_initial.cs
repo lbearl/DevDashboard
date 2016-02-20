@@ -3,7 +3,7 @@ namespace StatusBoard.Infrastructure.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class ServerAndUser : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -40,6 +40,21 @@ namespace StatusBoard.Infrastructure.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.ServiceHistories",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ServerId = c.Int(nullable: false),
+                        PingStatus = c.String(),
+                        PingResponseTime = c.String(),
+                        SslCertificateStatus = c.String(),
+                        SslCertificateExpirationDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Servers", t => t.ServerId, cascadeDelete: true)
+                .Index(t => t.ServerId);
+            
+            CreateTable(
                 "dbo.UserRole",
                 c => new
                     {
@@ -56,11 +71,14 @@ namespace StatusBoard.Infrastructure.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.ServiceHistories", "ServerId", "dbo.Servers");
             DropForeignKey("dbo.UserRole", "UserId", "dbo.User");
             DropForeignKey("dbo.UserRole", "RoleId", "dbo.Role");
             DropIndex("dbo.UserRole", new[] { "UserId" });
             DropIndex("dbo.UserRole", new[] { "RoleId" });
+            DropIndex("dbo.ServiceHistories", new[] { "ServerId" });
             DropTable("dbo.UserRole");
+            DropTable("dbo.ServiceHistories");
             DropTable("dbo.Servers");
             DropTable("dbo.User");
             DropTable("dbo.Role");

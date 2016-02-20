@@ -9,74 +9,26 @@ using StatusBoard.Infrastructure.DbContext;
 
 namespace StatusBoard.Infrastructure.Repositories
 {
-    public class ServerRepository : IServerRepository
+    internal class ServerRepository : Repository<Server>, IServerRepository
     {
-        private readonly ApplicationDbContext _context;
 
-        public ServerRepository(ApplicationDbContext dbContext)
+        public ServerRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
-            _context = dbContext;
         }
 
-
-        public List<Server> GetAll()
+        public Server FindByHostname(string hostname)
         {
-            return _context.Servers.ToList();
+           return Set.FirstOrDefault(x => x.Hostname.Equals(hostname));
         }
 
-        public Task<List<Server>> GetAllAsync()
+        public Task<Server> FindByHostnameAsync(string hostname)
         {
-            return _context.Servers.ToListAsync();
+            return Set.FirstOrDefaultAsync(x => x.Hostname.Equals(hostname));
         }
 
-        public Task<List<Server>> GetAllAsync(CancellationToken cancellationToken)
+        public Task<Server> FindByHostnameAsync(CancellationToken cancellationToken, string hostname)
         {
-            return _context.Servers.ToListAsync(cancellationToken);
-        }
-
-        public List<Server> PageAll(int skip, int take)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<List<Server>> PageAllAsync(int skip, int take)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<List<Server>> PageAllAsync(CancellationToken cancellationToken, int skip, int take)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Server FindById(object id)
-        {
-            return _context.Servers.Where(x => x.Id == (int) id).FirstOrDefault();
-        }
-
-        public Task<Server> FindByIdAsync(object id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<Server> FindByIdAsync(CancellationToken cancellationToken, object id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Add(Server entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Update(Server entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Remove(Server entity)
-        {
-            throw new System.NotImplementedException();
+            return Set.FirstOrDefaultAsync(x => x.Hostname.Equals(hostname), cancellationToken);
         }
     }
 }

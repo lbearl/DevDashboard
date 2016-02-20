@@ -4,9 +4,9 @@ namespace StatusBoard.Core.IServices
 {
     public interface IServerStatusService
     {
-        PingStatus PingTest(string hostname);
+        void PingTest(string hostname);
 
-        SSLCertificateStatus CheckSSLCertStatus(string hostname);
+        void CheckSSLCertStatus(string hostname);
 
     }
 }

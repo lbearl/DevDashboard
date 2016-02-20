@@ -16,14 +16,14 @@ namespace StatusBoard.Infrastructure.Services
         {
             _pingService = pingService;
         }
-        public PingStatus PingTest(string hostname)
+        public void PingTest(string hostname)
         {
-            return _pingService.Ping(hostname);
+            _pingService.Ping(hostname);
         }
 
-        public SSLCertificateStatus CheckSSLCertStatus(string hostname)
+        public void CheckSSLCertStatus(string hostname)
         {
-            return null;
+            return;
         }
     }
 }

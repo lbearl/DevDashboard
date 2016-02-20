@@ -81,13 +81,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DbContext\ApplicationDbContext.cs" />
     <Compile Include="EFConfiguration\RoleConfiguration.cs" />
     <Compile Include="EFConfiguration\UserConfiguration.cs" />
-    <Compile Include="Migrations\201602190215100_ServerAndUser.cs" />
-    <Compile Include="Migrations\201602190215100_ServerAndUser.Designer.cs">
-      <DependentUpon>201602190215100_ServerAndUser.cs</DependentUpon>
+    <Compile Include="Migrations\201602200158356_initial.cs" />
+    <Compile Include="Migrations\201602200158356_initial.Designer.cs">
+      <DependentUpon>201602200158356_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,6 +94,7 @@
     <Compile Include="Repositories\Identity\UserRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\ServerRepository.cs" />
+    <Compile Include="Repositories\ServiceHistoryRepository.cs" />
     <Compile Include="Services\HTTPPingService.cs" />
     <Compile Include="Services\ApplicationRecurringJobs.cs" />
     <Compile Include="Services\ServerStatusService.cs" />
@@ -111,8 +111,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602190215100_ServerAndUser.resx">
-      <DependentUpon>201602190215100_ServerAndUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602200158356_initial.resx">
+      <DependentUpon>201602200158356_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

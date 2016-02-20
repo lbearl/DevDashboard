@@ -20,6 +20,7 @@ namespace StatusBoard.Infrastructure
         private IRoleRepository _roleRepository;
         private IUserRepository _userRepository;
         private IServerRepository _serverRepository;
+        private IServiceHistoryRepository _serviceHistoryRepository;
         #endregion
 
         #region Constructors
@@ -36,6 +37,9 @@ namespace StatusBoard.Infrastructure
         public IUserRepository UserRepository => _userRepository ?? (_userRepository = new UserRepository(_context));
 
         public IServerRepository ServerRepository => _serverRepository ?? (_serverRepository = new ServerRepository(_context));
+
+        public IServiceHistoryRepository ServiceHistoryRepository
+            => _serviceHistoryRepository ?? (_serviceHistoryRepository = new ServiceHistoryRepository(_context));
 
         public int SaveChanges()
         {
