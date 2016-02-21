@@ -9,6 +9,6 @@ namespace StatusBoard.Core.IServices
 {
     public interface IPingService
     {
-        void Ping(string hostname);
+        bool Ping(string hostname);
     }
 }

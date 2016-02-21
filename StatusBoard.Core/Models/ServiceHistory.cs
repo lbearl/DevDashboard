@@ -17,6 +17,11 @@ namespace StatusBoard.Core.Models
         public string SslCertificateStatus { get; set; }
         public DateTime SslCertificateExpirationDate { get; set; }
 
+        /// <summary>
+        /// The date time when the service history record was recorded
+        /// </summary>
+        public DateTime RecordedOn { get; set; }
+
         public virtual Server Server { get; set; }
     }
 }

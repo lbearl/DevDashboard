@@ -13,32 +13,41 @@ namespace StatusBoard.Infrastructure.Services
 {
     public class HttpPingService : IPingService
     {
-        private IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         public HttpPingService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public void Ping(string hostname)
+        public bool Ping(string hostname)
         {
-            var server = _unitOfWork.ServerRepository.FindByHostname(hostname);
-            var serviceHistory = new ServiceHistory {Server = server};
-            var request = WebRequest.Create(hostname);
-            var watch = Stopwatch.StartNew();
-            using (var response = request.GetResponse())
+            try
             {
-                serviceHistory.PingStatus = ((HttpWebResponse)response).StatusCode.ToString();
+                var server = _unitOfWork.ServerRepository.FindByHostname(hostname);
+                var serviceHistory = new ServiceHistory {Server = server};
+                var request = WebRequest.Create(hostname);
+                var watch = Stopwatch.StartNew();
+                using (var response = request.GetResponse())
+                {
+                    serviceHistory.PingStatus = ((HttpWebResponse)response).StatusCode.ToString();
+                }
+                watch.Stop();
+                //this is a rough approximation of the time for the request
+                serviceHistory.PingResponseTime = watch.ElapsedMilliseconds.ToString();
+
+                var cert = ((HttpWebRequest) request).ServicePoint.Certificate;
+                if (cert == null) throw new Exception("Certificate was null"); 
+                serviceHistory.SslCertificateExpirationDate = DateTime.Parse(cert.GetExpirationDateString());
+
+                serviceHistory.SslCertificateStatus = serviceHistory.SslCertificateExpirationDate > DateTime.Now ? "Valid" : "Expired";
+                serviceHistory.RecordedOn = DateTime.Now;
+                _unitOfWork.ServiceHistoryRepository.Add(serviceHistory);
+                _unitOfWork.SaveChanges();
             }
-            watch.Stop();
-            //this is a rough approximation of the time for the request
-            serviceHistory.PingResponseTime = watch.ElapsedMilliseconds.ToString();
-
-            var cert = ((HttpWebRequest) request).ServicePoint.Certificate;
-            if (cert == null) throw new Exception("Certificate was null");
-            serviceHistory.SslCertificateExpirationDate = DateTime.Parse(cert.GetExpirationDateString());
-
-            serviceHistory.SslCertificateStatus = serviceHistory.SslCertificateExpirationDate < DateTime.Now ? "Valid" : "Expired";
-            _unitOfWork.ServiceHistoryRepository.Add(serviceHistory);
-            _unitOfWork.SaveChanges();
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

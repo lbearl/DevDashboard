@@ -16,6 +16,9 @@ namespace StatusBoard.Web
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            //ensure that all WebAPI calls are authorized
+            config.Filters.Add(new AuthorizeAttribute());
         }
     }
 }
