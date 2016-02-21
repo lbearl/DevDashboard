@@ -51,6 +51,7 @@
     <Compile Include="IServices\IPingService.cs" />
     <Compile Include="IServices\IServerStatusService.cs" />
     <Compile Include="IServices\IUnitOfWork.cs" />
+    <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Components\DevStatus\CIStatus.cs" />
     <Compile Include="Models\Components\DevStatus\JiraStatus.cs" />
     <Compile Include="Models\Components\ServerStatus\PingStatus.cs" />

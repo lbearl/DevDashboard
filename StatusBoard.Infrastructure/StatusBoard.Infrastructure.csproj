@@ -73,6 +73,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -87,6 +88,10 @@
     <Compile Include="Migrations\201602200158356_initial.cs" />
     <Compile Include="Migrations\201602200158356_initial.Designer.cs">
       <DependentUpon>201602200158356_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602210537369_BaseObjectTracking.cs" />
+    <Compile Include="Migrations\201602210537369_BaseObjectTracking.Designer.cs">
+      <DependentUpon>201602210537369_BaseObjectTracking.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -113,6 +118,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602200158356_initial.resx">
       <DependentUpon>201602200158356_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602210537369_BaseObjectTracking.resx">
+      <DependentUpon>201602210537369_BaseObjectTracking.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
