@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace StatusBoard.Core.Models
 {
     
-    public class Server
+    public class Server : BaseEntity
     {
         private ICollection<ServiceHistory> _serviceHistories;
         public int Id { get; set; }
