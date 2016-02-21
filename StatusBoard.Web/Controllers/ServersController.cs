@@ -1,10 +1,7 @@
-﻿using System.Data.Entity;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Web.Mvc;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models;
-using StatusBoard.Infrastructure.DbContext;
 
 namespace StatusBoard.Web.Controllers
 {

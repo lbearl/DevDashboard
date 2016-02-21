@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using StatusBoard.Core.IServices;
-using StatusBoard.Core.Models.Components.ServerStatus;
+﻿using StatusBoard.Core.IServices;
 
 namespace StatusBoard.Infrastructure.Services
 {

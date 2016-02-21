@@ -6,7 +6,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using StatusBoard.Web.Identity;
 using StatusBoard.Web.ViewModels;
-using Microsoft.Owin.Host.SystemWeb;
 
 namespace StatusBoard.Web.Controllers
 {

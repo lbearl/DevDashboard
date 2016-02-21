@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models.Identity;
 using Microsoft.AspNet.Identity;

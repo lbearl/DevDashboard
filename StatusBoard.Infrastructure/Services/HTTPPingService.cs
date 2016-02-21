@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models;
-using StatusBoard.Core.Models.Components.ServerStatus;
 
 namespace StatusBoard.Infrastructure.Services
 {
@@ -18,6 +13,11 @@ namespace StatusBoard.Infrastructure.Services
         {
             _unitOfWork = unitOfWork;
         }
+        /// <summary>
+        /// Pings a host and records the SSL certificate status and whether the host is up
+        /// </summary>
+        /// <param name="hostname">Fully qualified host url (i.e. https://host.ext)</param>
+        /// <returns>Success</returns>
         public bool Ping(string hostname)
         {
             try

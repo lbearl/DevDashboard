@@ -29,9 +29,7 @@ namespace StatusBoard.Web.App_Start {
 
 	using StatusBoard.Web.DependencyResolution;
 
-    using StructureMap;
-    
-	public static class StructuremapMvc {
+    public static class StructuremapMvc {
         #region Public Properties
 
         public static StructureMapDependencyScope StructureMapDependencyScope { get; set; }

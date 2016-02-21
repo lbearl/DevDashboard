@@ -1,6 +1,5 @@
 namespace StatusBoard.Infrastructure.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
     
     public partial class ServiceHistoryRecordedOn : DbMigration

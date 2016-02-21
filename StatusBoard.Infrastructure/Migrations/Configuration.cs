@@ -1,13 +1,6 @@
-using StatusBoard.Core.Models;
-using StatusBoard.Core.Models.Identity;
-using StatusBoard.Infrastructure.DbContext;
-
 namespace StatusBoard.Infrastructure.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<StatusBoard.Infrastructure.DbContext.ApplicationDbContext>
     {

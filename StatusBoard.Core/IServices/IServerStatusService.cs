@@ -1,6 +1,4 @@
-﻿using StatusBoard.Core.Models.Components.ServerStatus;
-
-namespace StatusBoard.Core.IServices
+﻿namespace StatusBoard.Core.IServices
 {
     public interface IServerStatusService
     {

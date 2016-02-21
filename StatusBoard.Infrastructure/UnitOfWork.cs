@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using StatusBoard.Core.IRepositories;
 using StatusBoard.Core.IRepositories.Identity;
 using StatusBoard.Core.IServices;
-using StatusBoard.Core.Models;
 using StatusBoard.Infrastructure.DbContext;
 using StatusBoard.Infrastructure.Repositories;
 using StatusBoard.Infrastructure.Repositories.Identity;
