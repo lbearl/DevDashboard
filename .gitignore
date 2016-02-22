@@ -210,3 +210,5 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+StatusBoard.Web/wwwroot/
+StatusBoard.Web/Content/bower_components/
