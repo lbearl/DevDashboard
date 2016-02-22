@@ -12,6 +12,9 @@ namespace StatusBoard.Core.Models
         [DisplayName("Host Name"), Required]
         public string Hostname { get; set; }
 
+        [DisplayName("Display Name")]
+        public string DisplayName { get; set; }
+
         [DisplayName("Is Active")]
         public bool IsActive { get; set; }
 

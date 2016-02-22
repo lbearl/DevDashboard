@@ -1,8 +1,4 @@
-﻿/* override the default bootstrap btn-link to elimate padding around the button */
-.btn-link {
-  padding: 0; }
-
-/* begin default MVC styles */
+﻿/* begin default MVC styles */
 body {
   padding-top: 50px;
   padding-bottom: 20px; }

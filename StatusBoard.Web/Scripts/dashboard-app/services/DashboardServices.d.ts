@@ -1,0 +1,2 @@
+declare module Dashboard.Services {
+}

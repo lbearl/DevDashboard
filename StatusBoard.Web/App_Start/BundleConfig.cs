@@ -15,6 +15,13 @@ namespace StatusBoard.Web
                         "~/Content/bower_components/Microsoft.jQuery.Unobtrusive.Validation/jquery.validate.unobtrusive.js")
                 );
 
+            //bundle for angular + sbadmin2 + signalR
+            bundles.Add(new ScriptBundle("~/bundles/singlepagedashboard").Include(
+                "~/Content/bower_components/angular/angular.js").Include(
+                "~/Content/bower_components/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js").Include(
+                "~/Content/bower_components/metisMenu/dist/metisMenu.js").Include(
+                "~/Content/bower_components/signalr/jquery.signalR.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -25,10 +32,20 @@ namespace StatusBoard.Web
                       "~/Content/bower_components/bootstrap/dist/js/bootstrap.js",
                       "~/Content/bower_components/respondJs/dest/respond.src.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bower_components/bootstrap/dist/css/bootstrap.css",
-                      "~/Content/bower_components/bootstrap/dist/css/bootstrap-theme.css",
+            bundles.Add(new StyleBundle("~/Content/sitecss").Include(
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/bower_components/bootstrap/dist/css/bootstrap.css").Include(
+                      //"~/Content/bootswatch-cosmo.css").Include(
+                      //need the next line (and an explicity font awesome dependency) to get around some MVC pipeline issues
+                      "~/Content/bower_components/font-awesome/css/font-awesome.css", new CssRewriteUrlTransform()
+                   ));
+
+            bundles.Add(new StyleBundle("~/Content/sbadmin").Include(
+                "~/Content/bower_components/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css",
+                "~/Content/bower_components/startbootstrap-sb-admin-2/dist/css/timeline.css",
+                "~/Content/bower_components/metisMenu/dist/metisMenu.css"));
         }
     }
 }
