@@ -16,7 +16,6 @@
     "moment": "^2.11.2"
   },
   "resolutions": {
-    "bootstrap": "~3.3.6",
     "font-awesome": "4.4.0"
   }
 }

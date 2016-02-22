@@ -1,8 +1,5 @@
 namespace StatusBoard.Web.DependencyResolution {
     using System.Web;
-
-    using StatusBoard.Web.App_Start;
-
     using StructureMap.Web.Pipeline;
 
     public class StructureMapScopeModule : IHttpModule {

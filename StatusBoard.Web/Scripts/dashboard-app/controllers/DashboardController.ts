@@ -1,6 +1,7 @@
 ﻿/// <reference path="../../../typings/browser/ambient/angular/angular.d.ts" />
 module Dashboard.Controllers {
     import Server = Models.Server;
+    import DashboardScope = Interfaces.IDashboardScope;
     "use strict";
 
     export class DashboardController {
@@ -8,13 +9,27 @@ module Dashboard.Controllers {
 
         public static $inject = [
             '$scope',
-            '$location'
-        ]
+            '$location',
+            '$http'
+        ];
 
         constructor(
-            private $scope: ng.IScope,
-            private $location: ng.ILocationService) {
-            //$scope.servers = [];
+            private $scope: DashboardScope,
+            private $location: ng.ILocationService,
+            private $http: any) {
+            //forcibly injecting the servers into the scope for now
+            $http({
+                method: 'GET',
+                url: '/api/ServerActions/GetAllServers'
+            }).then(response => {
+                //success
+                $scope.servers = response.data;
+
+            }, response => {
+                //fail
+            });
         }
     }
+
+    angular.module('dashboard').controller('dashboardController', ['$scope', '$location', '$http', DashboardController]);
 }

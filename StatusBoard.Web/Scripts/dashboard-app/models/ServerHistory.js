@@ -4,8 +4,9 @@ var Dashboard;
     (function (Models) {
         "use strict";
         var ServerHistory = (function () {
-            function ServerHistory(server, pingStatus, pingResponseTime, sslCertificateStatus, sslCertificateExpiryDate) {
+            function ServerHistory(server, serverId, pingStatus, pingResponseTime, sslCertificateStatus, sslCertificateExpiryDate) {
                 this.server = server;
+                this.serverId = serverId;
                 this.pingStatus = pingStatus;
                 this.pingResponseTime = pingResponseTime;
                 this.sslCertificateStatus = sslCertificateStatus;

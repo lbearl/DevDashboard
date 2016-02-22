@@ -4,7 +4,11 @@ var Dashboard;
     (function (Models) {
         "use strict";
         var Server = (function () {
-            function Server() {
+            function Server(serverId, displayName, hostname, isActive) {
+                this.serverId = serverId;
+                this.displayName = displayName;
+                this.isActive = isActive;
+                this.hostname = hostname;
             }
             return Server;
         })();

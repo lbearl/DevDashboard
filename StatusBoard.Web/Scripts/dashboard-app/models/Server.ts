@@ -2,7 +2,15 @@
     "use strict";
 
     export class Server {
-            displayName: string;
-            isActive: boolean;
+        constructor(serverId: number, displayName: string, hostname: string, isActive: boolean) {
+            this.serverId = serverId;
+            this.displayName = displayName;
+            this.isActive = isActive;
+            this.hostname = hostname;
+        }
+        serverId: number;
+        displayName: string;
+        hostname: string;
+        isActive: boolean;
     }
 }

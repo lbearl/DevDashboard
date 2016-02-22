@@ -198,6 +198,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ModelViews\Server.cs" />
+    <Compile Include="API\ModelViews\ServerHistory.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -227,10 +229,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
-    <Compile Include="WebAPI\ServerActionsController.cs" />
+    <Compile Include="API\Controllers\ServerActionsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootswatch-cosmo.css" />
+    <Content Include="Content\bower_components\angular-route\angular-route.js" />
+    <Content Include="Content\bower_components\angular-route\angular-route.min.js" />
+    <Content Include="Content\bower_components\angular-route\index.js" />
     <Content Include="Content\bower_components\angular-signalr-hub\.gitignore" />
     <Content Include="Content\bower_components\angular-signalr-hub\signalr-hub.js" />
     <Content Include="Content\bower_components\angular-signalr-hub\signalr-hub.min.js" />
@@ -1891,6 +1896,11 @@
     <Content Include="Content\bower_components\angular-signalr-hub\CHANGELOG.md" />
     <Content Include="Content\bower_components\angular-signalr-hub\LICENSE" />
     <Content Include="Content\bower_components\angular-signalr-hub\README.md" />
+    <Content Include="Content\bower_components\angular-route\.bower.json" />
+    <Content Include="Content\bower_components\angular-route\angular-route.min.js.map" />
+    <Content Include="Content\bower_components\angular-route\bower.json" />
+    <Content Include="Content\bower_components\angular-route\package.json" />
+    <Content Include="Content\bower_components\angular-route\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dashboard-app\views\index.html" />
     <Content Include="Scripts\dashboard-app\views\server.html" />
@@ -1949,8 +1959,10 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\dashboard-app\controllers\DashboardController.ts" />
+    <TypeScriptCompile Include="Scripts\dashboard-app\controllers\ServerController.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\dashboard.module.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\dashboard.route.ts" />
+    <TypeScriptCompile Include="Scripts\dashboard-app\interfaces\Dashboard.Scope.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\models\ServerHistory.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\services\DashboardServices.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\models\Server.ts" />

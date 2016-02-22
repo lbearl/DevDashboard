@@ -15,20 +15,16 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using StatusBoard.Web.App_Start;
-
+using System.Web.Mvc;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using StatusBoard.Web;
+using StatusBoard.Web.DependencyResolution;
 using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(StructuremapMvc), "Start")]
 [assembly: ApplicationShutdownMethod(typeof(StructuremapMvc), "End")]
 
-namespace StatusBoard.Web.App_Start {
-	using System.Web.Mvc;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-	using StatusBoard.Web.DependencyResolution;
-
+namespace StatusBoard.Web {
     public static class StructuremapMvc {
         #region Public Properties
 

@@ -5,6 +5,7 @@ using StatusBoard.Core.Models;
 
 namespace StatusBoard.Web.Controllers
 {
+    [Authorize]
     public class ServersController : Controller
     {
         private IUnitOfWork _unitOfWork;

@@ -20,7 +20,7 @@ namespace StatusBoard.Web
                 "~/Content/bower_components/angular/angular.js").Include(
                 "~/Content/bower_components/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js").Include(
                 "~/Content/bower_components/metisMenu/dist/metisMenu.js").Include(
-                "~/Content/bower_components/signalr/jquery.signalR.js"));
+                "~/Content/bower_components/angular-route/angular-route.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

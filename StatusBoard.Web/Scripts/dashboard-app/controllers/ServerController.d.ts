@@ -1,12 +1,12 @@
 /// <reference path="../../../typings/browser/ambient/angular/angular.d.ts" />
 declare module Dashboard.Controllers {
-    import DashboardScope = Interfaces.IDashboardScope;
-    class DashboardController {
+    import ServerScope = Interfaces.IServerScope;
+    class ServerController {
         private $scope;
         private $location;
         private $http;
-        private servers;
+        private serverHistory;
         static $inject: string[];
-        constructor($scope: DashboardScope, $location: ng.ILocationService, $http: any);
+        constructor($scope: ServerScope, $location: ng.ILocationService, $http: any);
     }
 }

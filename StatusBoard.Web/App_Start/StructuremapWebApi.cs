@@ -16,11 +16,12 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Web.Http;
+using StatusBoard.Web;
 using StatusBoard.Web.DependencyResolution;
 
-[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(StatusBoard.Web.App_Start.StructuremapWebApi), "Start")]
+[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(StructuremapWebApi), "Start")]
 
-namespace StatusBoard.Web.App_Start {
+namespace StatusBoard.Web {
     public static class StructuremapWebApi {
         public static void Start() {
 			var container = StructuremapMvc.StructureMapDependencyScope.Container;
