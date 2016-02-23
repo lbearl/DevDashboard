@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StatusBoard.Core.Models.Server>
+﻿@model IEnumerable<StatusBoard.Web.ViewModels.Server>
 
 @{
     ViewBag.Title = "Index";
@@ -20,18 +20,6 @@
         <th>
             @Html.DisplayNameFor(model => model.IsActive)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateModified)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserModified)
-        </th>
         <th></th>
     </tr>
 
@@ -47,21 +35,9 @@
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateModified)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserModified)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Hostname }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Hostname }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Hostname })
         </td>
     </tr>
 }

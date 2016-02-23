@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models;
@@ -18,7 +19,8 @@ namespace StatusBoard.Web.Controllers
         // GET: Servers
         public ActionResult Index()
         {
-            return View(_unitOfWork.ServerRepository.GetAll());
+            var vm = _unitOfWork.ServerRepository.GetAll().Select(x => new ViewModels.Server() {Hostname = x.Hostname, DisplayName = x.DisplayName, IsActive = x.IsActive});
+            return View(vm);
         }
 
         // GET: Servers/Details/5
