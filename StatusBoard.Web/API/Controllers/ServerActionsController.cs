@@ -3,6 +3,8 @@ using System.Linq;
 using System.Web.Http;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models;
+using StatusBoard.Web.API.ViewModels;
+using Server = StatusBoard.Web.API.ViewModels.Server;
 
 namespace StatusBoard.Web.API.Controllers
 {
@@ -22,28 +24,40 @@ namespace StatusBoard.Web.API.Controllers
         }
 
         [HttpGet]
-        public List<ModelViews.Server> GetAllServers()
+        [Route("api/ServerActions/GetAllServers")]
+        public List<Server> GetAllServers()
         {
-            return _unitOfWork.ServerRepository.GetAll().ToList().Select(server => new ModelViews.Server()
+            return _unitOfWork.ServerRepository.GetAll().ToList().Select(server => new Server()
             {
                 ServerId = server.Id, DisplayName = server.DisplayName, HostName = server.Hostname, IsActive = server.IsActive
             }).ToList();
         }
 
-
-        public List<ModelViews.ServerHistory> GetServerHistoryForServer(int id)
+        [HttpGet]
+        public ServerDiagnostics GetServerHistoryForServer(int? id)
         {
-            return
-                _unitOfWork.ServiceHistoryRepository.GetAllForHost(id)
-                    .ToList()
-                    .Select(history => new ModelViews.ServerHistory()
-                    {
-                        PingResponseTime = history.PingResponseTime,
-                        PingStatus = history.PingStatus,
-                        ServerId = history.ServerId,
-                        SslCerficateStatus = history.SslCertificateStatus,
-                        SslCertificateExpiryDate = history.SslCertificateExpirationDate
-                    }).ToList();
+            if (id == null) return null;
+
+            //retrieve all of the necessary data, and map it to the viewmodel
+            var data = _unitOfWork.ServiceHistoryRepository.GetAllForHost(id.Value)
+                .Select(history => new ServerHistory()
+                {
+                    PingResponseTime = history.PingResponseTime,
+                    PingStatus = history.PingStatus,
+                    ServerId = history.ServerId,
+                    TakenAt = history.RecordedOn,
+                    SslCertificateStatus = history.SslCertificateStatus.Equals("Valid"),
+                    SslCertificateExpiryDate = history.SslCertificateExpirationDate
+                }).ToList();
+
+            return new ServerDiagnostics() { 
+                HostName = _unitOfWork.ServerRepository.FindById(id.Value).DisplayName,
+                ServerHistory =  data,
+                TimeSeries = data.Select(history => new PingTimeSeries()
+                {
+                    PingResponseTime = int.Parse(history.PingResponseTime),
+                    TakenAt = (int)history.TakenAt.Subtract(new System.DateTime(1970, 1, 1)).TotalSeconds * 1000
+                }).ToList()};
         }
     }
 }

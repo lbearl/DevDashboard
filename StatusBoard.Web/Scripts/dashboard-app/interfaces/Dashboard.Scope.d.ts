@@ -5,6 +5,9 @@ declare module Dashboard.Interfaces {
         servers: Server[];
     }
     interface IServerScope extends ng.IScope {
+        title: string;
         serverHistory: ServerHistory[];
+        chartData: {};
+        myChartOptions: {};
     }
 }

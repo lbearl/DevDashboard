@@ -7,6 +7,9 @@
     }
 
     export interface IServerScope extends ng.IScope {
-        serverHistory: ServerHistory[]
+        title: string;
+        serverHistory: ServerHistory[];
+        chartData: {};
+        myChartOptions: {};
     }
 }

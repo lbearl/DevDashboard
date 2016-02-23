@@ -21,7 +21,7 @@ var Dashboard;
         Routes.$inject = ["$routeProvider"];
         return Routes;
     })();
-    var dashboard = angular.module('dashboard', ["ngRoute"])
+    var dashboard = angular.module('dashboard', ["ngRoute", "angular-flot"])
         .config(Routes);
 })(Dashboard || (Dashboard = {}));
 //# sourceMappingURL=dashboard.module.js.map

@@ -4,7 +4,5 @@
     {
         void PingTest(string hostname);
 
-        void CheckSSLCertStatus(string hostname);
-
     }
 }

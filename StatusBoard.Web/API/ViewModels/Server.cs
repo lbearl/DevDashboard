@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace StatusBoard.Web.API.ModelViews
+﻿namespace StatusBoard.Web.API.ViewModels
 {
     public class Server
     {

@@ -22,7 +22,7 @@
     }
 
 
-    var dashboard = angular.module('dashboard', ["ngRoute"])
+    var dashboard = angular.module('dashboard', ["ngRoute", "angular-flot"])
         .config(Routes);
 }
 

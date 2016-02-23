@@ -3,10 +3,10 @@ declare module Dashboard.Controllers {
     import ServerScope = Interfaces.IServerScope;
     class ServerController {
         private $scope;
-        private $location;
+        private $routeParams;
         private $http;
         private serverHistory;
         static $inject: string[];
-        constructor($scope: ServerScope, $location: ng.ILocationService, $http: any);
+        constructor($scope: ServerScope, $routeParams: any, $http: any);
     }
 }

@@ -14,10 +14,5 @@ namespace StatusBoard.Infrastructure.Services
         {
             _pingService.Ping(hostname);
         }
-
-        public void CheckSSLCertStatus(string hostname)
-        {
-            return;
-        }
     }
 }
