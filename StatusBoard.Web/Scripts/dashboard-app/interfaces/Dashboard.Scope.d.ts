@@ -8,6 +8,6 @@ declare module Dashboard.Interfaces {
         title: string;
         serverHistory: ServerHistory[];
         chartData: {};
-        myChartOptions: {};
+        chartOptions: {};
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using StatusBoard.Core.IServices;
@@ -56,7 +57,7 @@ namespace StatusBoard.Web.API.Controllers
                 TimeSeries = data.Select(history => new PingTimeSeries()
                 {
                     PingResponseTime = int.Parse(history.PingResponseTime),
-                    TakenAt = (int)history.TakenAt.Subtract(new System.DateTime(1970, 1, 1)).TotalSeconds * 1000
+                    TakenAt = history.TakenAt
                 }).ToList()};
         }
     }

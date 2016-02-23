@@ -18,6 +18,7 @@ module Dashboard.Controllers {
             private $location: ng.ILocationService,
             private $http: any) {
             //forcibly injecting the servers into the scope for now
+
             $http({
                 method: 'GET',
                 url: '/api/ServerActions/GetAllServers'

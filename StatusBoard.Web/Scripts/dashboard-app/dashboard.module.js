@@ -5,12 +5,12 @@ var Dashboard;
         function Routes($routeProvider) {
             $routeProvider
                 .when("/server/:serverid", {
-                templateUrl: "/Scripts/dashboard-app/views/server.html",
+                templateUrl: "/Scripts/dashboard-app/views/_server.html",
                 controller: "dashboardController",
                 controllerAs: "vm"
             })
                 .when("/index", {
-                templateUrl: "/Scripts/dashboard-app/views/index.html",
+                templateUrl: "/Scripts/dashboard-app/views/_dashboard.html",
                 controller: "dashboardController",
                 controllerAs: "vm"
             })
@@ -21,7 +21,7 @@ var Dashboard;
         Routes.$inject = ["$routeProvider"];
         return Routes;
     })();
-    var dashboard = angular.module('dashboard', ["ngRoute", "angular-flot"])
+    var dashboard = angular.module('dashboard', ["ngRoute", "nvd3"])
         .config(Routes);
 })(Dashboard || (Dashboard = {}));
 //# sourceMappingURL=dashboard.module.js.map

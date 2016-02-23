@@ -6,12 +6,12 @@
         constructor($routeProvider: ng.route.IRouteProvider) {
             $routeProvider
                 .when("/server/:serverid", {
-                    templateUrl: "/Scripts/dashboard-app/views/server.html",
+                    templateUrl: "/Scripts/dashboard-app/views/_server.html",
                     controller: "dashboardController",
                     controllerAs: "vm"
                 })
                 .when("/index", {
-                    templateUrl: "/Scripts/dashboard-app/views/index.html",
+                    templateUrl: "/Scripts/dashboard-app/views/_dashboard.html",
                     controller: "dashboardController",
                     controllerAs: "vm"
                 })
@@ -22,7 +22,7 @@
     }
 
 
-    var dashboard = angular.module('dashboard', ["ngRoute", "angular-flot"])
+    var dashboard = angular.module('dashboard', ["ngRoute", "nvd3"])
         .config(Routes);
 }
 

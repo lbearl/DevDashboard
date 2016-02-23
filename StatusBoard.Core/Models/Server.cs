@@ -18,8 +18,6 @@ namespace StatusBoard.Core.Models
         [DisplayName("Is Active")]
         public bool IsActive { get; set; }
 
-        public string IpAddress { get; set; }
-
         public virtual ICollection<ServiceHistory> ServiceHistory
         {
             get { return _serviceHistories ?? (_serviceHistories = new List<ServiceHistory>()); }

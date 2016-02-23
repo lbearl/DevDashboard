@@ -17,9 +17,8 @@ module Dashboard.Controllers {
         constructor(
             private $scope: ServerScope,
             private $routeParams: any, //the use of "any" here is a hack until I have time to build out all the ifaces needed
-            private $http: any) {
-            var server = new Server(1, 'The LA Girl', 'https://www.thelagirl.com', true);
-
+            private $http: any,
+            private $interval: ng.IIntervalService) {
             $http({
                 method: 'GET',
                 url: '/api/ServerActions/GetServerHistoryForServer?id=' + $routeParams.serverid
@@ -27,13 +26,16 @@ module Dashboard.Controllers {
                 $scope.serverHistory = response.data.ServerHistory;
                 $scope.chartData = response.data.TimeSeries;
                 $scope.title = response.data.HostName;
-                $scope.myChartOptions = {
-                    xaxis: {
-                        mode: "time",
-                        timezone: "browser",
-                        timeformat: "%Y/%m/%d %H:%M"
+                $scope.chartOptions = {
+                    chart: {
+                        type: 'sparklinePlus',
+                        height: 200,
+                        x: (d, i) => i,
+                        y: (d) => d.PingResponseTime,
+                        xTickFormat: d => d3.time.format('%x %X')(new Date($scope.chartData[d].TakenAt)),
+                        duration: 250
                     }
-            };
+                }
             }, response => {
                 //fail
             });

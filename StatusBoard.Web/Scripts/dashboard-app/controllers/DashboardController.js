@@ -6,10 +6,10 @@ var Dashboard;
         "use strict";
         var DashboardController = (function () {
             function DashboardController($scope, $location, $http) {
+                //forcibly injecting the servers into the scope for now
                 this.$scope = $scope;
                 this.$location = $location;
                 this.$http = $http;
-                //forcibly injecting the servers into the scope for now
                 $http({
                     method: 'GET',
                     url: '/api/ServerActions/GetAllServers'

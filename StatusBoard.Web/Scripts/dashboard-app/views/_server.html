@@ -49,8 +49,9 @@
     </div>
     <!-- /.panel-heading -->
     <div class="panel-body">
-        <!-- should redo this using: http://jtblin.github.io/angular-chart.js/ since it is native angular-->
-        <flot dataset="chartData" options="myChartOptions" height="200px" width="400px"></flot>
+        <div class="chart-container">
+            <nvd3 options='chartOptions' data='chartData'></nvd3>
+        </div>
     </div>
     <!-- /.panel-body -->
 </div>

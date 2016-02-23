@@ -5,6 +5,6 @@ namespace StatusBoard.Core.IServices
 {
     public interface IJiraStatusService
     {
-        List<JiraStatus> JiraStatuses { get; set; }
+        void JiraHighPriorityIssues();
     }
 }

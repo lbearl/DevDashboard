@@ -9,6 +9,7 @@
     <title>Dashboard</title>
     @Styles.Render("~/Content/sbadmin")
     @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="~/Content/bower_components/nvd3/build/nv.d3.css"/>
     
 </head>
 <body>
@@ -67,9 +68,8 @@
 <script src="~/Scripts/dashboard-app/controllers/DashboardController.js"></script>
     <script src="~/Scripts/dashboard-app/models/ServerHistory.js"></script>
 <script src="~/Scripts/dashboard-app/controllers/ServerController.js"></script>
-<script src="~/Content/bower_components/angular-flot/angular-flot.js"></script>
-<script src="~/Content/bower_components/flot/jquery.flot.js"></script>
-<script src="~/Content/bower_components/flot/jquery.flot.time.js"></script>
-
+<script src="~/Content/bower_components/d3/d3.js"></script>
+<script src="~/Content/bower_components/nvd3/build/nv.d3.js"></script>
+<script src="~/Content/bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
 </body>
-</html>
+</html> 

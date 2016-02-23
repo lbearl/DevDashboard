@@ -3,15 +3,14 @@ var Dashboard;
 (function (Dashboard) {
     var Controllers;
     (function (Controllers) {
-        var Server = Dashboard.Models.Server;
         "use strict";
         var ServerController = (function () {
             function ServerController($scope, $routeParams, //the use of "any" here is a hack until I have time to build out all the ifaces needed
-                $http) {
+                $http, $interval) {
                 this.$scope = $scope;
                 this.$routeParams = $routeParams;
                 this.$http = $http;
-                var server = new Server(1, 'The LA Girl', 'https://www.thelagirl.com', true);
+                this.$interval = $interval;
                 $http({
                     method: 'GET',
                     url: '/api/ServerActions/GetServerHistoryForServer?id=' + $routeParams.serverid
@@ -19,11 +18,14 @@ var Dashboard;
                     $scope.serverHistory = response.data.ServerHistory;
                     $scope.chartData = response.data.TimeSeries;
                     $scope.title = response.data.HostName;
-                    $scope.myChartOptions = {
-                        xaxis: {
-                            mode: "time",
-                            timezone: "browser",
-                            timeformat: "%Y/%m/%d %H:%M"
+                    $scope.chartOptions = {
+                        chart: {
+                            type: 'sparklinePlus',
+                            height: 200,
+                            x: function (d, i) { return i; },
+                            y: function (d) { return d.PingResponseTime; },
+                            xTickFormat: function (d) { return d3.time.format('%x %X')(new Date($scope.chartData[d].TakenAt)); },
+                            duration: 250
                         }
                     };
                 }, function (response) {

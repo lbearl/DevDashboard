@@ -13,6 +13,7 @@ namespace StatusBoard.Infrastructure.Services
         {
             _unitOfWork = unitOfWork;
         }
+        //TODO this should all be refactored to make WebRequest be injected
         /// <summary>
         /// Pings a host and records the SSL certificate status and whether the host is up
         /// </summary>

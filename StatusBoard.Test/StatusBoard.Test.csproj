@@ -71,9 +71,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainLayer\BambooServiceTest.cs" />
-    <Compile Include="DomainLayer\JiraServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\HttpPingServiceTest.cs" />
     <Compile Include="WebUIAndDI\StructureMapResolutionTest.cs" />
   </ItemGroup>
   <ItemGroup>

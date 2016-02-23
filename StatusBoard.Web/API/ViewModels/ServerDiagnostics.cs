@@ -26,6 +26,6 @@ namespace StatusBoard.Web.API.ViewModels
         /// <summary>
         /// This is the date time in milliseconds since Jan 1 1970 (JS is weird)
         /// </summary>
-        public int TakenAt { get; set; }
+        public DateTime TakenAt { get; set; }
     }
 }

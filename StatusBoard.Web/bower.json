@@ -2,19 +2,16 @@
   "name": "ASP.NET",
   "private": true,
   "dependencies": {
-    "jquery": "2.1.4",
     "angular": "1.5.0",
+    "angular-nvd3": "1.0.5",
     "angular-route": "1.5.0",
     "bootstrap": "3.3.6",
-    "Microsoft.jQuery.Unobtrusive.Validation": "~3.2.3",
-    "Microsoft.jQuery.Unobtrusive.Ajax": "~3.2.3",
-    "respondJs": "~1.4.2",
-    "startbootstrap-sb-admin-2": "~1.0.8",
     "font-awesome": "4.4.0",
-    "angular-flot": "0.0.16"
-  },
-  "devDependencies": {
-    "moment": "^2.11.2"
+    "jquery": "2.1.4",
+    "Microsoft.jQuery.Unobtrusive.Ajax": "~3.2.3",
+    "Microsoft.jQuery.Unobtrusive.Validation": "~3.2.3",
+    "respondJs": "~1.4.2",
+    "startbootstrap-sb-admin-2": "~1.0.8"
   },
   "resolutions": {
     "font-awesome": "4.4.0"
