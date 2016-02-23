@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace StatusBoard.Web.API.ViewModels
+namespace StatusBoard.Web.ViewModels
 {
     public class ServerDiagnostics
     {

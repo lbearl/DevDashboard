@@ -19,7 +19,7 @@ namespace StatusBoard.Web.Controllers
         // GET: Servers
         public ActionResult Index()
         {
-            var vm = _unitOfWork.ServerRepository.GetAll().Select(x => new ViewModels.Server() {Hostname = x.Hostname, DisplayName = x.DisplayName, IsActive = x.IsActive});
+            var vm = _unitOfWork.ServerRepository.GetAll().Select(x => new ViewModels.Server() {ServerId = x.Id, HostName = x.Hostname, DisplayName = x.DisplayName, IsActive = x.IsActive});
             return View(vm);
         }
 
@@ -35,7 +35,9 @@ namespace StatusBoard.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(server);
+            var vm = new ViewModels.Server() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName, IsActive = server.IsActive };
+
+            return View(vm);
         }
 
         // GET: Servers/Create
@@ -49,16 +51,17 @@ namespace StatusBoard.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Hostname,IsActive,IpAddress")] Server server)
+        public ActionResult Create([Bind(Include = "ServerId,DisplayName,HostName,IsActive")] ViewModels.Server vm)
         {
             if (ModelState.IsValid)
             {
+                var server = new Server() {IsActive = vm.IsActive, DisplayName = vm.DisplayName, Hostname = vm.HostName, Id = vm.ServerId};
                 _unitOfWork.ServerRepository.Add(server);
                 _unitOfWork.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(server);
+            return View(vm);
         }
 
         // GET: Servers/Edit/5
@@ -73,7 +76,8 @@ namespace StatusBoard.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(server);
+            var vm = new ViewModels.Server() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName, IsActive = server.IsActive };
+            return View(vm);
         }
 
         // POST: Servers/Edit/5
@@ -81,15 +85,16 @@ namespace StatusBoard.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Hostname,IsActive,IpAddress")] Server server)
+        public ActionResult Edit([Bind(Include = "ServerId,DisplayName,HostName,IsActive")] ViewModels.Server vm)
         {
             if (ModelState.IsValid)
             {
+                var server = new Server() { IsActive = vm.IsActive, DisplayName = vm.DisplayName, Hostname = vm.HostName, Id = vm.ServerId };
                 _unitOfWork.ServerRepository.Update(server);
                 _unitOfWork.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(server);
+            return View(vm);
         }
 
         // GET: Servers/Delete/5
@@ -104,7 +109,8 @@ namespace StatusBoard.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(server);
+            var vm = new ViewModels.Server() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName, IsActive = server.IsActive };
+            return View(vm);
         }
 
         // POST: Servers/Delete/5

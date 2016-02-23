@@ -198,8 +198,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\ViewModels\Server.cs" />
-    <Compile Include="API\ViewModels\ServerDiagnostics.cs" />
+    <Compile Include="ViewModels\Server.cs" />
+    <Compile Include="ViewModels\ServerDiagnostics.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web.Http;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models;
-using StatusBoard.Web.API.ViewModels;
-using Server = StatusBoard.Web.API.ViewModels.Server;
+using StatusBoard.Web.ViewModels;
+using Server = StatusBoard.Web.ViewModels.Server;
 
 namespace StatusBoard.Web.API.Controllers
 {
