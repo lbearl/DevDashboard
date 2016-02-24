@@ -6,7 +6,7 @@ namespace StatusBoard.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToActionPermanent("Index", "Dashboard");
         }
 
         public ActionResult About()

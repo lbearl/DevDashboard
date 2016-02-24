@@ -102,9 +102,9 @@
     <Compile Include="Migrations\201602210609598_ServiceHistoryRecordedOn.Designer.cs">
       <DependentUpon>201602210609598_ServiceHistoryRecordedOn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602221813010_2-22-1.cs" />
-    <Compile Include="Migrations\201602221813010_2-22-1.Designer.cs">
-      <DependentUpon>201602221813010_2-22-1.cs</DependentUpon>
+    <Compile Include="Migrations\201602221813010_AddServersDisplayName.cs" />
+    <Compile Include="Migrations\201602221813010_AddServersDisplayName.Designer.cs">
+      <DependentUpon>201602221813010_AddServersDisplayName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201602231030408_RemoveIpAddressFromServers.cs" />
     <Compile Include="Migrations\201602231030408_RemoveIpAddressFromServers.Designer.cs">
@@ -119,7 +119,6 @@
     <Compile Include="Repositories\ServiceHistoryRepository.cs" />
     <Compile Include="Services\HTTPPingService.cs" />
     <Compile Include="Services\ApplicationRecurringJobs.cs" />
-    <Compile Include="Services\JiraStatusService.cs" />
     <Compile Include="Services\ServerStatusService.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
@@ -143,8 +142,8 @@
     <EmbeddedResource Include="Migrations\201602210609598_ServiceHistoryRecordedOn.resx">
       <DependentUpon>201602210609598_ServiceHistoryRecordedOn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602221813010_2-22-1.resx">
-      <DependentUpon>201602221813010_2-22-1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602221813010_AddServersDisplayName.resx">
+      <DependentUpon>201602221813010_AddServersDisplayName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602231030408_RemoveIpAddressFromServers.resx">
       <DependentUpon>201602231030408_RemoveIpAddressFromServers.cs</DependentUpon>

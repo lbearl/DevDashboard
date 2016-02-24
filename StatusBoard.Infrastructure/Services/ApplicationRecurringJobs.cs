@@ -16,13 +16,11 @@ namespace StatusBoard.Infrastructure.Services
         {
             Cleanup();
             RecurringJob.AddOrUpdate("ping-test", () => DoPingTestForAllHosts(), "*/5 * * * *"); //update ping test every 5 minutes
-            RecurringJob.AddOrUpdate("jira-update", () => UpdateJiraStatistics(), "*/5 * * * *");
         }
 
         private static void Cleanup()
         {
             RecurringJob.RemoveIfExists("ping-test");
-            RecurringJob.RemoveIfExists("jira-update");
         }
 
         public static void DoPingTestForAllHosts()
@@ -33,12 +31,6 @@ namespace StatusBoard.Infrastructure.Services
             {
                 serverStatusService.PingTest(host.Hostname);
             }
-        }
-
-        public static void UpdateJiraStatistics()
-        {
-            var jiraStatusService = ServiceLocator.Current.GetInstance<IJiraStatusService>();
-            jiraStatusService.JiraHighPriorityIssues();
         }
 
 
