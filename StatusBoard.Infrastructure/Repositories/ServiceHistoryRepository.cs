@@ -15,7 +15,7 @@ namespace StatusBoard.Infrastructure.Repositories
 
         public IQueryable<ServiceHistory> GetAllForHost(int id)
         {
-            return Set.Where(x => x.ServerId == id);
+            return Set.Where(x => x.ServerId == id).OrderBy(x=>x.RecordedOn);
         }
     }
 }
