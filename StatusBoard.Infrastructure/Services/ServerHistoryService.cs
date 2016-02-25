@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using StatusBoard.Core.IExternalServices;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models;
@@ -27,11 +28,6 @@ namespace StatusBoard.Infrastructure.Services
             _unitOfWork.SaveChanges();
         }
 
-        public Task<int> AddAsync(ServiceHistory entity)
-        {
-            _unitOfWork.ServiceHistoryRepository.Add(entity);
-            return _unitOfWork.SaveChangesAsync();
-        }
 
         public void Update(ServiceHistory entity)
         {
@@ -50,5 +46,9 @@ namespace StatusBoard.Infrastructure.Services
             return _unitOfWork.ServiceHistoryRepository.GetAllForHost(id).ToList();
         }
 
+        public List<ServiceHistory> GetPageOfHistoriesForHostById(int id, int start, int count)
+        {
+            return _unitOfWork.ServiceHistoryRepository.GetAllForHost(id).OrderBy(x=>x.RecordedOn).Skip(start).Take(count).ToList();
+        }
     }
 }

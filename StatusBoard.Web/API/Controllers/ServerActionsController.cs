@@ -41,7 +41,9 @@ namespace StatusBoard.Web.API.Controllers
             if (id == null) return null;
 
             //retrieve all of the necessary data, and map it to the viewmodel
-            var data = _serverHistoryService.GetAllHistoriesForHostById(id.Value)
+            //we are getting the first 250 data points right now, this should be made to be 
+            //configurable in the future
+            var data = _serverHistoryService.GetPageOfHistoriesForHostById(id.Value, 0, 250)
                 .Select(history => new ServerHistory()
                 {
                     PingResponseTime = history.PingResponseTime,
