@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNet.Identity;
 
-namespace StatusBoard.Web.Identity
+namespace StatusBoard.Core.Models.Identity
 {
     public class IdentityUser : IUser<Guid>
     {

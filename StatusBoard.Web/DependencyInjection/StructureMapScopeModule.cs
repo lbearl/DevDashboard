@@ -1,7 +1,7 @@
-namespace StatusBoard.Web.DependencyResolution {
-    using System.Web;
-    using StructureMap.Web.Pipeline;
+using System.Web;
+using StructureMap.Web.Pipeline;
 
+namespace StatusBoard.Web.DependencyInjection {
     public class StructureMapScopeModule : IHttpModule {
         #region Public Methods and Operators
 

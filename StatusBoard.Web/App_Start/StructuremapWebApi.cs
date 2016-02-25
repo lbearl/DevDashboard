@@ -16,8 +16,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Web.Http;
+using StatusBoard.Infrastructure.DependencyResolution;
 using StatusBoard.Web;
-using StatusBoard.Web.DependencyResolution;
 
 [assembly: WebActivatorEx.PostApplicationStartMethod(typeof(StructuremapWebApi), "Start")]
 

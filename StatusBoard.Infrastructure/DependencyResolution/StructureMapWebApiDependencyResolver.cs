@@ -17,13 +17,14 @@
 
 using System.Web.Http.Dependencies;
 using StructureMap;
+using IDependencyResolver = System.Web.Mvc.IDependencyResolver;
 
-namespace StatusBoard.Web.DependencyResolution
+namespace StatusBoard.Infrastructure.DependencyResolution
 {
     /// <summary>
     /// The structure map dependency resolver.
     /// </summary>
-    public class StructureMapWebApiDependencyResolver : StructureMapWebApiDependencyScope, IDependencyResolver
+    public class StructureMapWebApiDependencyResolver : StructureMapWebApiDependencyScope, IDependencyResolver, System.Web.Http.Dependencies.IDependencyResolver
     {
         #region Constructors and Destructors
 

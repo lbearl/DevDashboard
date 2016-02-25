@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IoC.cs" company="Web Advanced">
+// <copyright file="ControllerConvention.cs" company="Web Advanced">
 // Copyright 2012 Web Advanced (www.webadvanced.com)
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,18 +15,23 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.Web.Mvc;
+using StructureMap.Configuration.DSL;
+using StructureMap.Graph;
+using StructureMap.Pipeline;
+using StructureMap.TypeRules;
 
-using CommonServiceLocator.StructureMapAdapter.Unofficial;
-using Microsoft.Practices.ServiceLocation;
+namespace StatusBoard.Infrastructure.DependencyResolution {
+    public class ControllerConvention : IRegistrationConvention {
+        #region Public Methods and Operators
 
-namespace StatusBoard.Web.DependencyResolution {
-    using StructureMap;
-	
-    public static class IoC {
-        public static IContainer Initialize() {
-            var container = new Container(c => c.AddRegistry<DefaultRegistry>());
-            ServiceLocator.SetLocatorProvider(() => new StructureMapServiceLocator(container));
-            return container;
+        public void Process(Type type, Registry registry) {
+            if (type.CanBeCastTo<Controller>() && !type.IsAbstract) {
+                registry.For(type).LifecycleIs(new UniquePerRequestLifecycle());
+            }
         }
+
+        #endregion
     }
 }

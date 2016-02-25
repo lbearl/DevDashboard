@@ -17,8 +17,9 @@
 
 using System.Web.Mvc;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using StatusBoard.Infrastructure.DependencyResolution;
 using StatusBoard.Web;
-using StatusBoard.Web.DependencyResolution;
+using StatusBoard.Web.DependencyInjection;
 using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(StructuremapMvc), "Start")]

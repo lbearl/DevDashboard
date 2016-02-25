@@ -198,6 +198,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DependencyInjection\StructureMapScopeModule.cs" />
     <Compile Include="ViewModels\Server.cs" />
     <Compile Include="ViewModels\ServerDiagnostics.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -212,20 +213,9 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ServersController.cs" />
-    <Compile Include="DependencyResolution\ControllerConvention.cs" />
-    <Compile Include="DependencyResolution\DefaultRegistry.cs" />
-    <Compile Include="DependencyResolution\IoC.cs" />
-    <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
-    <Compile Include="DependencyResolution\StructureMapScopeModule.cs" />
-    <Compile Include="DependencyResolution\StructureMapWebApiDependencyResolver.cs" />
-    <Compile Include="DependencyResolution\StructureMapWebApiDependencyScope.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Identity\IdentityRole.cs" />
-    <Compile Include="Identity\IdentityUser.cs" />
-    <Compile Include="Identity\RoleStore.cs" />
-    <Compile Include="Identity\UserStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
@@ -1866,6 +1856,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Identity\" />
     <Folder Include="typings\browser\ambient\" />
     <Folder Include="typings\main\ambient\" />
   </ItemGroup>

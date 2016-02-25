@@ -1,7 +1,7 @@
 ﻿using StatusBoard.Core.IRepositories;
 using StatusBoard.Core.IServices;
 using StatusBoard.Infrastructure;
-using StatusBoard.Web.DependencyResolution;
+using StatusBoard.Infrastructure.DependencyResolution;
 using StructureMap;
 using Xunit;
 

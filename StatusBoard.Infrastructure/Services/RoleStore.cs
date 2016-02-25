@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models.Identity;
-using Microsoft.AspNet.Identity;
 
-namespace StatusBoard.Web.Identity
+namespace StatusBoard.Infrastructure.Services
 {
     public class RoleStore : IQueryableRoleStore<IdentityRole, Guid>
     {

@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models.Identity;
 
-namespace StatusBoard.Web.Identity
+namespace StatusBoard.Infrastructure.Services
 {
     public class UserStore : IUserRoleStore<IdentityUser, Guid>, IUserPasswordStore<IdentityUser, Guid>, IUserSecurityStampStore<IdentityUser, Guid>
     {

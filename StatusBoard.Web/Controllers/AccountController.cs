@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-using StatusBoard.Web.Identity;
+using StatusBoard.Core.Models.Identity;
 using StatusBoard.Web.ViewModels;
 
 namespace StatusBoard.Web.Controllers

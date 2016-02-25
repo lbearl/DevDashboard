@@ -18,15 +18,13 @@
 using System;
 using Microsoft.AspNet.Identity;
 using StatusBoard.Core.IServices;
-using StatusBoard.Infrastructure;
+using StatusBoard.Core.Models.Identity;
 using StatusBoard.Infrastructure.DbContext;
 using StatusBoard.Infrastructure.Services;
-using StatusBoard.Web.Identity;
+using StructureMap.Configuration.DSL;
+using StructureMap.Graph;
 
-namespace StatusBoard.Web.DependencyResolution {
-    using StructureMap.Configuration.DSL;
-    using StructureMap.Graph;
-	
+namespace StatusBoard.Infrastructure.DependencyResolution {
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
 
