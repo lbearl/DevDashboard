@@ -31,6 +31,7 @@ namespace StatusBoard.Test.Services
         }
 
         [Fact]
+        [Trait("Category", "Controller")]
         public void Assert_Trigger_New_Service_History_Returns_Ok_For_Valid_Host()
         {
             //Arrange
@@ -48,6 +49,7 @@ namespace StatusBoard.Test.Services
         }
 
         [Fact]
+        [Trait("Category", "Controller")]
         public void Assert_Trigger_New_Service_History_Returns_NotFound_For_Invalid_Host()
         {
             //Arrange
@@ -64,6 +66,7 @@ namespace StatusBoard.Test.Services
         }
 
         [Fact]
+        [Trait("Category", "Controller")]
         public void Assert_Get_All_Servers_Returns_List()
         {
             //Arrange
@@ -88,6 +91,7 @@ namespace StatusBoard.Test.Services
         }
 
         [Fact]
+        [Trait("Category", "Controller")]
         public void Assert_Server_Diagnostic_For_Correct_Server_Is_Returned()
         {
             //Arrange
@@ -118,6 +122,7 @@ namespace StatusBoard.Test.Services
         }
 
         [Fact]
+        [Trait("Category", "Controller")]
         public void Assert_Server_Diagnostic_Fails_If_Diagnostic_Data_Missing()
         {
             //Arrange
@@ -134,6 +139,7 @@ namespace StatusBoard.Test.Services
         }
 
         [Fact]
+        [Trait("Category", "Controller")]
         public void Assert_Server_Diagnostic_For_Null_Server_Is_Null()
         {
             //Arrange
