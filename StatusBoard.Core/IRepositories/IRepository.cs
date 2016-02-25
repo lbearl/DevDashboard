@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace StatusBoard.Core.IRepositories
 {
@@ -11,18 +9,13 @@ namespace StatusBoard.Core.IRepositories
     public interface IRepository<TEntity> where TEntity : class
     {
         //Retrieve all elements
-        List<TEntity> GetAll();
-        Task<List<TEntity>> GetAllAsync();
-        Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken);
+        IQueryable<TEntity> GetAll();
 
         //Pagination
-        List<TEntity> PageAll(int skip, int take);
-        Task<List<TEntity>> PageAllAsync(int skip, int take);
-        Task<List<TEntity>> PageAllAsync(CancellationToken cancellationToken, int skip, int take);
+        IQueryable<TEntity> PageAll(int skip, int take);
+        
         //FindById
         TEntity FindById(object id);
-        Task<TEntity> FindByIdAsync(object id);
-        Task<TEntity> FindByIdAsync(CancellationToken cancellationToken, object id);
 
         //The rest of CRUD (mostly CUD)
         void Add(TEntity entity);

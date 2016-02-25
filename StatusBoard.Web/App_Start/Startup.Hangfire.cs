@@ -1,6 +1,6 @@
 ﻿using Hangfire;
 using Owin;
-using StatusBoard.Infrastructure.Services;
+using StatusBoard.Infrastructure.ExternalServices;
 
 namespace StatusBoard.Web
 {

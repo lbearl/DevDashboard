@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net;
+using StatusBoard.Core.IExternalServices;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models;
 
-namespace StatusBoard.Infrastructure.Services
+namespace StatusBoard.Infrastructure.ExternalServices
 {
     public class HttpPingService : IPingService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public HttpPingService(IUnitOfWork unitOfWork)
+        private readonly IServerHistoryService _serverHistoryService;
+        private readonly IServerService _serverService;
+        public HttpPingService(IServerHistoryService serverHistoryService, IServerService serverService)
         {
-            _unitOfWork = unitOfWork;
+            _serverHistoryService = serverHistoryService;
+            _serverService = serverService;
         }
 
         /// <summary>
@@ -23,7 +26,7 @@ namespace StatusBoard.Infrastructure.Services
         {
             try
             {
-                var server = _unitOfWork.ServerRepository.FindByHostname(hostname);
+                var server = _serverService.FindServerByHostname(hostname);
                 var serviceHistory = new ServiceHistory {Server = server};
                 var request = WebRequest.Create(hostname);
                 var watch = Stopwatch.StartNew();
@@ -41,8 +44,7 @@ namespace StatusBoard.Infrastructure.Services
 
                 serviceHistory.SslCertificateStatus = serviceHistory.SslCertificateExpirationDate > DateTime.Now ? "Valid" : "Expired";
                 serviceHistory.RecordedOn = DateTime.Now;
-                _unitOfWork.ServiceHistoryRepository.Add(serviceHistory);
-                _unitOfWork.SaveChanges();
+                _serverHistoryService.Add(serviceHistory);
             }
             catch (Exception)
             {

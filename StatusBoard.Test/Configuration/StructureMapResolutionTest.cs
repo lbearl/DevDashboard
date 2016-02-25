@@ -1,5 +1,4 @@
-﻿using StatusBoard.Core.IRepositories;
-using StatusBoard.Core.IServices;
+﻿using StatusBoard.Core.IExternalServices;
 using StatusBoard.Infrastructure;
 using StatusBoard.Infrastructure.DependencyResolution;
 using StructureMap;

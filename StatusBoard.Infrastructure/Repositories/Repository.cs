@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using StatusBoard.Core.IRepositories;
 using StatusBoard.Infrastructure.DbContext;
 
@@ -20,50 +17,23 @@ namespace StatusBoard.Infrastructure.Repositories
 
         protected DbSet<TEntity> Set => _set ?? (_set = _context.Set<TEntity>());
 
-        public List<TEntity> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
-            return Set.ToList();
+            return Set;
         }
+        
 
-        public Task<List<TEntity>> GetAllAsync()
+        public IQueryable<TEntity> PageAll(int skip, int take)
         {
-            return Set.ToListAsync();
+            return Set.Skip(skip).Take(take);
         }
-
-        public Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken)
-        {
-            return Set.ToListAsync(cancellationToken);
-        }
-
-        public List<TEntity> PageAll(int skip, int take)
-        {
-            return Set.Skip(skip).Take(take).ToList();
-        }
-
-        public Task<List<TEntity>> PageAllAsync(int skip, int take)
-        {
-            return Set.Skip(skip).Take(take).ToListAsync();
-        }
-
-        public Task<List<TEntity>> PageAllAsync(CancellationToken cancellationToken, int skip, int take)
-        {
-            return Set.Skip(skip).Take(take).ToListAsync(cancellationToken);
-        }
+        
 
         public TEntity FindById(object id)
         {
             return Set.Find(id);
         }
 
-        public Task<TEntity> FindByIdAsync(object id)
-        {
-            return Set.FindAsync(id);
-        }
-
-        public Task<TEntity> FindByIdAsync(CancellationToken cancellationToken, object id)
-        {
-            return Set.FindAsync(cancellationToken, id);
-        }
 
         public void Add(TEntity entity)
         {
@@ -73,6 +43,8 @@ namespace StatusBoard.Infrastructure.Repositories
         public void Update(TEntity entity)
         {
             var entry = _context.Entry(entity);
+            //this will handle the common case of reattaching detached objects
+            //note that on key conflict it will explode nicely
             if (entry.State == EntityState.Detached)
             {
                 Set.Attach(entity);

@@ -1,6 +1,6 @@
-﻿using StatusBoard.Core.IServices;
+﻿using StatusBoard.Core.IExternalServices;
 
-namespace StatusBoard.Infrastructure.Services
+namespace StatusBoard.Infrastructure.ExternalServices
 {
     public class ServerStatusService : IServerStatusService
     {

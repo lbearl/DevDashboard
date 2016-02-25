@@ -2,13 +2,14 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using StatusBoard.Core.IServices;
+using StatusBoard.Core.IExternalServices;
 using StatusBoard.Core.Models.Identity;
 
-namespace StatusBoard.Infrastructure.Services
+namespace StatusBoard.Infrastructure.ExternalServices
 {
     public class RoleStore : IQueryableRoleStore<IdentityRole, Guid>
     {
+
         private readonly IUnitOfWork _unitOfWork;
 
         public RoleStore(IUnitOfWork unitOfWork)
@@ -17,10 +18,10 @@ namespace StatusBoard.Infrastructure.Services
         }
 
         #region IRoleStore<IdentityRole, Guid> Members
-        public System.Threading.Tasks.Task CreateAsync(IdentityRole role)
+        public Task CreateAsync(IdentityRole role)
         {
             if (role == null)
-                throw new ArgumentNullException("role");
+                throw new ArgumentNullException(nameof(role));
 
             var r = getRole(role);
 
@@ -28,10 +29,10 @@ namespace StatusBoard.Infrastructure.Services
             return _unitOfWork.SaveChangesAsync();
         }
 
-        public System.Threading.Tasks.Task DeleteAsync(IdentityRole role)
+        public Task DeleteAsync(IdentityRole role)
         {
             if (role == null)
-                throw new ArgumentNullException("role");
+                throw new ArgumentNullException(nameof(role));
 
             var r = getRole(role);
 
@@ -39,22 +40,22 @@ namespace StatusBoard.Infrastructure.Services
             return _unitOfWork.SaveChangesAsync();
         }
 
-        public System.Threading.Tasks.Task<IdentityRole> FindByIdAsync(Guid roleId)
+        public Task<IdentityRole> FindByIdAsync(Guid roleId)
         {
             var role = _unitOfWork.RoleRepository.FindById(roleId);
             return Task.FromResult<IdentityRole>(getIdentityRole(role));
         }
 
-        public System.Threading.Tasks.Task<IdentityRole> FindByNameAsync(string roleName)
+        public Task<IdentityRole> FindByNameAsync(string roleName)
         {
             var role = _unitOfWork.RoleRepository.FindByName(roleName);
             return Task.FromResult<IdentityRole>(getIdentityRole(role));
         }
 
-        public System.Threading.Tasks.Task UpdateAsync(IdentityRole role)
+        public Task UpdateAsync(IdentityRole role)
         {
             if (role == null)
-                throw new ArgumentNullException("role");
+                throw new ArgumentNullException(nameof(role));
             var r = getRole(role);
             _unitOfWork.RoleRepository.Update(r);
             return _unitOfWork.SaveChangesAsync();

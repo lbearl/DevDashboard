@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using StatusBoard.Core.IServices;
+using StatusBoard.Core.IExternalServices;
 using StatusBoard.Core.Models.Identity;
 
-namespace StatusBoard.Infrastructure.Services
+namespace StatusBoard.Infrastructure.ExternalServices
 {
     public class UserStore : IUserRoleStore<IdentityUser, Guid>, IUserPasswordStore<IdentityUser, Guid>, IUserSecurityStampStore<IdentityUser, Guid>
     {
@@ -21,7 +21,7 @@ namespace StatusBoard.Infrastructure.Services
         public Task CreateAsync(IdentityUser user)
         {
             if (user == null)
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException(nameof(user));
 
             var u = GetUser(user);
 
@@ -32,7 +32,7 @@ namespace StatusBoard.Infrastructure.Services
         public Task DeleteAsync(IdentityUser user)
         {
             if (user == null)
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException(nameof(user));
 
             var u = GetUser(user);
 
@@ -59,7 +59,7 @@ namespace StatusBoard.Infrastructure.Services
 
             var u = _unitOfWork.UserRepository.FindById(user.Id);
             if (u == null)
-                throw new ArgumentException("IdentityUser does not correspond to a User entity.", "user");
+                throw new ArgumentException("IdentityUser does not correspond to a User entity.", nameof(user));
 
             PopulateUser(u, user);
 
@@ -81,16 +81,16 @@ namespace StatusBoard.Infrastructure.Services
         public Task AddToRoleAsync(IdentityUser user, string roleName)
         {
             if (user == null)
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException(nameof(user));
             if (string.IsNullOrWhiteSpace(roleName))
                 throw new ArgumentException("Argument cannot be null, empty, or whitespace: roleName.");
 
             var u = _unitOfWork.UserRepository.FindById(user.Id);
             if (u == null)
-                throw new ArgumentException("IdentityUser does not correspond to a User entity.", "user");
+                throw new ArgumentException("IdentityUser does not correspond to a User entity.", nameof(user));
             var r = _unitOfWork.RoleRepository.FindByName(roleName);
             if (r == null)
-                throw new ArgumentException("roleName does not correspond to a Role entity.", "roleName");
+                throw new ArgumentException("roleName does not correspond to a Role entity.", nameof(roleName));
 
             u.Roles.Add(r);
             _unitOfWork.UserRepository.Update(u);
@@ -101,11 +101,11 @@ namespace StatusBoard.Infrastructure.Services
         public Task<IList<string>> GetRolesAsync(IdentityUser user)
         {
             if (user == null)
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException(nameof(user));
 
             var u = _unitOfWork.UserRepository.FindById(user.Id);
             if (u == null)
-                throw new ArgumentException("IdentityUser does not correspond to a User entity.", "user");
+                throw new ArgumentException("IdentityUser does not correspond to a User entity.", nameof(user));
 
             return Task.FromResult<IList<string>>(u.Roles.Select(x => x.Name).ToList());
         }
@@ -113,13 +113,13 @@ namespace StatusBoard.Infrastructure.Services
         public Task<bool> IsInRoleAsync(IdentityUser user, string roleName)
         {
             if (user == null)
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException(nameof(user));
             if (string.IsNullOrWhiteSpace(roleName))
                 throw new ArgumentException("Argument cannot be null, empty, or whitespace: role.");
 
             var u = _unitOfWork.UserRepository.FindById(user.Id);
             if (u == null)
-                throw new ArgumentException("IdentityUser does not correspond to a User entity.", "user");
+                throw new ArgumentException("IdentityUser does not correspond to a User entity.", nameof(user));
 
             return Task.FromResult<bool>(u.Roles.Any(x => x.Name == roleName));
         }
@@ -127,13 +127,13 @@ namespace StatusBoard.Infrastructure.Services
         public Task RemoveFromRoleAsync(IdentityUser user, string roleName)
         {
             if (user == null)
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException(nameof(user));
             if (string.IsNullOrWhiteSpace(roleName))
                 throw new ArgumentException("Argument cannot be null, empty, or whitespace: role.");
 
             var u = _unitOfWork.UserRepository.FindById(user.Id);
             if (u == null)
-                throw new ArgumentException("IdentityUser does not correspond to a User entity.", "user");
+                throw new ArgumentException("IdentityUser does not correspond to a User entity.", nameof(user));
 
             var r = u.Roles.FirstOrDefault(x => x.Name == roleName);
             u.Roles.Remove(r);
@@ -147,14 +147,14 @@ namespace StatusBoard.Infrastructure.Services
         public Task<string> GetPasswordHashAsync(IdentityUser user)
         {
             if (user == null)
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException(nameof(user));
             return Task.FromResult<string>(user.PasswordHash);
         }
 
         public Task<bool> HasPasswordAsync(IdentityUser user)
         {
             if (user == null)
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException(nameof(user));
             return Task.FromResult<bool>(!string.IsNullOrWhiteSpace(user.PasswordHash));
         }
 
@@ -169,7 +169,7 @@ namespace StatusBoard.Infrastructure.Services
         public Task<string> GetSecurityStampAsync(IdentityUser user)
         {
             if (user == null)
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException(nameof(user));
             return Task.FromResult<string>(user.SecurityStamp);
         }
 

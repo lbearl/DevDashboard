@@ -1,9 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Hangfire;
 using Microsoft.Practices.ServiceLocation;
+using StatusBoard.Core.IExternalServices;
 using StatusBoard.Core.IServices;
 
-namespace StatusBoard.Infrastructure.Services
+namespace StatusBoard.Infrastructure.ExternalServices
 {
     /// <summary>
     /// A utility class to configure recurring jobs for HangFire, or potentially any other type of persistent queueing system
@@ -25,9 +26,9 @@ namespace StatusBoard.Infrastructure.Services
 
         public static void DoPingTestForAllHosts()
         {
-            var unitOfWork = ServiceLocator.Current.GetInstance<IUnitOfWork>();
+            var serverService = ServiceLocator.Current.GetInstance<IServerService>();
             var serverStatusService = ServiceLocator.Current.GetInstance<IServerStatusService>();
-            foreach (var host in unitOfWork.ServerRepository.GetAll())
+            foreach (var host in serverService.GetAll())
             {
                 serverStatusService.PingTest(host.Hostname);
             }

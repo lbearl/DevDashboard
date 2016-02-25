@@ -9,17 +9,17 @@ namespace StatusBoard.Web.Controllers
     [Authorize]
     public class ServersController : Controller
     {
-        private IUnitOfWork _unitOfWork;
+        private IServerService _serverService;
 
-        public ServersController(IUnitOfWork unitOfWork)
+        public ServersController(IServerService serverService)
         {
-            _unitOfWork = unitOfWork;
+            _serverService = serverService;
         }
 
         // GET: Servers
         public ActionResult Index()
         {
-            var vm = _unitOfWork.ServerRepository.GetAll().Select(x => new ViewModels.Server() {ServerId = x.Id, HostName = x.Hostname, DisplayName = x.DisplayName, IsActive = x.IsActive});
+            var vm = _serverService.GetAll().Select(x => new ViewModels.Server() {ServerId = x.Id, HostName = x.Hostname, DisplayName = x.DisplayName, IsActive = x.IsActive});
             return View(vm);
         }
 
@@ -30,7 +30,7 @@ namespace StatusBoard.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var server = _unitOfWork.ServerRepository.FindById(id);
+            var server = _serverService.FindById(id.Value);
             if (server == null)
             {
                 return HttpNotFound();
@@ -56,8 +56,7 @@ namespace StatusBoard.Web.Controllers
             if (ModelState.IsValid)
             {
                 var server = new Server() {IsActive = vm.IsActive, DisplayName = vm.DisplayName, Hostname = vm.HostName, Id = vm.ServerId};
-                _unitOfWork.ServerRepository.Add(server);
-                _unitOfWork.SaveChanges();
+                _serverService.Add(server);
                 return RedirectToAction("Index");
             }
 
@@ -71,7 +70,7 @@ namespace StatusBoard.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var server = _unitOfWork.ServerRepository.FindById(id);
+            var server = _serverService.FindById(id.Value);
             if (server == null)
             {
                 return HttpNotFound();
@@ -90,8 +89,7 @@ namespace StatusBoard.Web.Controllers
             if (ModelState.IsValid)
             {
                 var server = new Server() { IsActive = vm.IsActive, DisplayName = vm.DisplayName, Hostname = vm.HostName, Id = vm.ServerId };
-                _unitOfWork.ServerRepository.Update(server);
-                _unitOfWork.SaveChanges();
+                _serverService.Update(server);
                 return RedirectToAction("Index");
             }
             return View(vm);
@@ -104,7 +102,7 @@ namespace StatusBoard.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var server = _unitOfWork.ServerRepository.FindById(id);
+            var server = _serverService.FindById(id.Value);
             if (server == null)
             {
                 return HttpNotFound();
@@ -118,9 +116,8 @@ namespace StatusBoard.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var server = _unitOfWork.ServerRepository.FindById(id);
-            _unitOfWork.ServerRepository.Remove(server);
-            _unitOfWork.SaveChanges();
+            var server = _serverService.FindById(id);
+            _serverService.Remove(server);
             return RedirectToAction("Index");
         }
 
@@ -128,7 +125,7 @@ namespace StatusBoard.Web.Controllers
         {
             if (disposing)
             {
-                _unitOfWork.Dispose();
+                _serverService.Dispose();
             }
             base.Dispose(disposing);
         }

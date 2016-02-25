@@ -17,10 +17,10 @@
 
 using System;
 using Microsoft.AspNet.Identity;
-using StatusBoard.Core.IServices;
+using StatusBoard.Core.IExternalServices;
 using StatusBoard.Core.Models.Identity;
 using StatusBoard.Infrastructure.DbContext;
-using StatusBoard.Infrastructure.Services;
+using StatusBoard.Infrastructure.ExternalServices;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;
 
@@ -39,7 +39,7 @@ namespace StatusBoard.Infrastructure.DependencyResolution {
             Scan(
                 scan => {
                     scan.TheCallingAssembly();
-                    scan.Assembly("StatusBoard.Infrastructure");
+                    scan.AssemblyContainingType<IUnitOfWork>();
                     scan.WithDefaultConventions();
 					scan.With(new ControllerConvention());
                 });

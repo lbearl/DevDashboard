@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using StatusBoard.Core.Models;
 
 namespace StatusBoard.Core.IRepositories
 {
     public interface IServiceHistoryRepository : IRepository<ServiceHistory>
     {
-        List<ServiceHistory> GetAllForHost(int id);
+        IQueryable<ServiceHistory> GetAllForHost(int id);
     }
 }

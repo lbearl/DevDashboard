@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using StatusBoard.Core.IExternalServices;
 using StatusBoard.Core.IServices;
-using StatusBoard.Core.Models;
 using StatusBoard.Web.ViewModels;
 using Server = StatusBoard.Web.ViewModels.Server;
 
@@ -12,11 +11,13 @@ namespace StatusBoard.Web.API.Controllers
     public class ServerActionsController : ApiController
     {
         private readonly IPingService _pingService;
-        private readonly IUnitOfWork _unitOfWork;
-        public ServerActionsController(IPingService pingService, IUnitOfWork unitOfWork)
+        private readonly IServerService _serverService;
+        private readonly IServerHistoryService _serverHistoryService;
+        public ServerActionsController(IPingService pingService, IServerService serverService, IServerHistoryService serverHistory)
         {
             _pingService = pingService;
-            _unitOfWork = unitOfWork;
+            _serverService = serverService;
+            _serverHistoryService = serverHistory;
         }
         [HttpGet]
         public IHttpActionResult TriggerNewServiceHistory(string hostname)
@@ -28,7 +29,7 @@ namespace StatusBoard.Web.API.Controllers
         [Route("api/ServerActions/GetAllServers")]
         public List<Server> GetAllServers()
         {
-            return _unitOfWork.ServerRepository.GetAll().ToList().Select(server => new Server()
+            return _serverService.GetAll().Select(server => new Server()
             {
                 ServerId = server.Id, DisplayName = server.DisplayName, HostName = server.Hostname, IsActive = server.IsActive
             }).ToList();
@@ -40,7 +41,7 @@ namespace StatusBoard.Web.API.Controllers
             if (id == null) return null;
 
             //retrieve all of the necessary data, and map it to the viewmodel
-            var data = _unitOfWork.ServiceHistoryRepository.GetAllForHost(id.Value)
+            var data = _serverHistoryService.GetAllHistoriesForHostById(id.Value)
                 .Select(history => new ServerHistory()
                 {
                     PingResponseTime = history.PingResponseTime,
@@ -49,11 +50,11 @@ namespace StatusBoard.Web.API.Controllers
                     TakenAt = history.RecordedOn,
                     SslCertificateStatus = history.SslCertificateStatus.Equals("Valid"),
                     SslCertificateExpiryDate = history.SslCertificateExpirationDate
-                }).ToList();
+                });
 
             return new ServerDiagnostics() { 
-                HostName = _unitOfWork.ServerRepository.FindById(id.Value).DisplayName,
-                ServerHistory =  data,
+                HostName = _serverService.FindById(id.Value).DisplayName,
+                ServerHistory =  data.ToList(),
                 TimeSeries = data.Select(history => new PingTimeSeries()
                 {
                     PingResponseTime = int.Parse(history.PingResponseTime),

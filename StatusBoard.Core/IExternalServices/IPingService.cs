@@ -1,4 +1,4 @@
-﻿namespace StatusBoard.Core.IServices
+﻿namespace StatusBoard.Core.IExternalServices
 {
     public interface IPingService
     {

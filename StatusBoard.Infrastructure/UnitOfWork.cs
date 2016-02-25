@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
+using StatusBoard.Core.IExternalServices;
 using StatusBoard.Core.IRepositories;
 using StatusBoard.Core.IRepositories.Identity;
-using StatusBoard.Core.IServices;
 using StatusBoard.Infrastructure.DbContext;
 using StatusBoard.Infrastructure.Repositories;
 using StatusBoard.Infrastructure.Repositories.Identity;

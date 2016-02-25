@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
 using System.Web.Http.Results;
 using Moq;
-using StatusBoard.Core.IRepositories;
+using StatusBoard.Core.IExternalServices;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models;
 using StatusBoard.Web.API.Controllers;
@@ -18,13 +15,16 @@ namespace StatusBoard.Test.Services
 {
     public class ServerActionTest
     {
-        private Mock<IUnitOfWork> uow;
+        private Mock<IServerService> serverServiceMock;
+
+        private Mock<IServerHistoryService> serverHistoryMock;
+
         private Mock<IPingService> pingService;
 
         public ServerActionTest()
         {
-            uow = new Mock<IUnitOfWork>();
-            
+            serverServiceMock = new Mock<IServerService>();
+            serverHistoryMock = new Mock<IServerHistoryService>();
             pingService = new Mock<IPingService>();
             
 
@@ -36,11 +36,11 @@ namespace StatusBoard.Test.Services
         {
             //Arrange
             var server = new Server() {Hostname = "testhost"};
-            uow.Setup(x => x.ServerRepository.FindById(1)).Returns(server);
+            serverServiceMock.Setup(x => x.FindById(1)).Returns(server);
             pingService.Setup(x => x.Ping("testhost")).Returns(true);
 
             //Act
-            var controller = new ServerActionsController(pingService.Object, uow.Object);
+            var controller = new ServerActionsController(pingService.Object, serverServiceMock.Object, serverHistoryMock.Object);
             var result = controller.TriggerNewServiceHistory("testhost");
 
             //Assert
@@ -54,10 +54,10 @@ namespace StatusBoard.Test.Services
         {
             //Arrange
             var server = new Server() { Hostname = "testhost" };
-            uow.Setup(x => x.ServerRepository.FindById(1)).Returns(server);
+            serverServiceMock.Setup(x => x.FindById(1)).Returns(server);
 
             //Act
-            var controller = new ServerActionsController(pingService.Object, uow.Object);
+            var controller = new ServerActionsController(pingService.Object, serverServiceMock.Object, serverHistoryMock.Object);
             var result = controller.TriggerNewServiceHistory("host that does not exist");
 
             //Assert
@@ -77,10 +77,10 @@ namespace StatusBoard.Test.Services
                 servers.Add(new Server() {Hostname = name, DisplayName = name, IsActive = true, Id = i});
             }
 
-            uow.Setup(x => x.ServerRepository.GetAll()).Returns(servers);
+            serverServiceMock.Setup(x => x.GetAll()).Returns(servers);
 
             //Act
-            var controller = new ServerActionsController(pingService.Object, uow.Object);
+            var controller = new ServerActionsController(pingService.Object, serverServiceMock.Object, serverHistoryMock.Object);
             var result = controller.GetAllServers();
 
             //Assert
@@ -96,7 +96,7 @@ namespace StatusBoard.Test.Services
         {
             //Arrange
             var server = new Server() { Hostname = "testhost", Id = 2};
-            uow.Setup(x => x.ServerRepository.FindById(2)).Returns(server);
+            serverServiceMock.Setup(x => x.FindById(2)).Returns(server);
             var serviceHistory = new List<ServiceHistory>();
             var serviceHistory2 = new List<ServiceHistory> {new ServiceHistory(){
                 ServerId = 2,
@@ -107,11 +107,11 @@ namespace StatusBoard.Test.Services
                 SslCertificateStatus = ""
             } };
 
-            uow.Setup(x => x.ServiceHistoryRepository.GetAllForHost(1)).Returns(serviceHistory);
-            uow.Setup(x => x.ServiceHistoryRepository.GetAllForHost(2)).Returns(serviceHistory2);
+            serverHistoryMock.Setup(x => x.GetAllHistoriesForHostById(1)).Returns(serviceHistory);
+            serverHistoryMock.Setup(x => x.GetAllHistoriesForHostById(2)).Returns(serviceHistory2);
 
             //Act
-            var controller = new ServerActionsController(pingService.Object, uow.Object);
+            var controller = new ServerActionsController(pingService.Object, serverServiceMock.Object, serverHistoryMock.Object);
             var result = controller.GetServerHistoryForServer(2);
 
             //Assert
@@ -128,10 +128,10 @@ namespace StatusBoard.Test.Services
             //Arrange
             var serviceHistory = new List<ServiceHistory> { new ServiceHistory() { ServerId = 2 } };
 
-            uow.Setup(x => x.ServiceHistoryRepository.GetAllForHost(2)).Returns(serviceHistory);
+            serverHistoryMock.Setup(x => x.GetAllHistoriesForHostById(2)).Returns(serviceHistory);
 
             //Act
-            var controller = new ServerActionsController(pingService.Object, uow.Object);
+            var controller = new ServerActionsController(pingService.Object, serverServiceMock.Object, serverHistoryMock.Object);
 
 
             //Assert
@@ -145,10 +145,10 @@ namespace StatusBoard.Test.Services
             //Arrange
             var serviceHistory = new List<ServiceHistory>();
 
-            uow.Setup(x => x.ServiceHistoryRepository.GetAllForHost(1)).Returns(serviceHistory);
+            serverHistoryMock.Setup(x => x.GetAllHistoriesForHostById(1)).Returns(serviceHistory);
 
             //Act
-            var controller = new ServerActionsController(pingService.Object, uow.Object);
+            var controller = new ServerActionsController(pingService.Object, serverServiceMock.Object, serverHistoryMock.Object);
             var result = controller.GetServerHistoryForServer(null);
 
             //Assert

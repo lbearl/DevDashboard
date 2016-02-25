@@ -37,7 +37,7 @@ namespace StatusBoard.Infrastructure.DependencyResolution {
 
         public StructureMapDependencyScope(IContainer container) {
             if (container == null) {
-                throw new ArgumentNullException("container");
+                throw new ArgumentNullException(nameof(container));
             }
             Container = container;
         }
