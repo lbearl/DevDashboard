@@ -6,6 +6,7 @@ namespace StatusBoard.Web.Controllers
     public class DashboardController : Controller
     {
         // GET: Dashboard
+        [HttpGet]
         public ActionResult Index()
         {
             return View();

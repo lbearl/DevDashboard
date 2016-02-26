@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using StatusBoard.Core;
 using StatusBoard.Core.IExternalServices;
 using StatusBoard.Core.IServices;
 using StatusBoard.Web.ViewModels;
-using Server = StatusBoard.Web.ViewModels.Server;
 
 namespace StatusBoard.Web.API.Controllers
 {
@@ -26,17 +26,17 @@ namespace StatusBoard.Web.API.Controllers
         }
 
         [HttpGet]
-        [Route("api/ServerActions/GetAllServers")]
-        public List<Server> GetAllServers()
+        [Route(Constants.ApiController.Routes.GetAllServers)]
+        public List<ServerVM> GetAllServers()
         {
-            return _serverService.GetAll().Select(server => new Server()
+            return _serverService.GetAll().Select(server => new ServerVM()
             {
                 ServerId = server.Id, DisplayName = server.DisplayName, HostName = server.Hostname, IsActive = server.IsActive
             }).ToList();
         }
 
         [HttpGet]
-        public ServerDiagnostics GetServerHistoryForServer(int? id)
+        public ServerDiagnosticsVM GetServerHistoryForServer(int? id)
         {
             if (id == null) return null;
 
@@ -54,7 +54,7 @@ namespace StatusBoard.Web.API.Controllers
                     SslCertificateExpiryDate = history.SslCertificateExpirationDate
                 });
 
-            return new ServerDiagnostics() { 
+            return new ServerDiagnosticsVM() { 
                 HostName = _serverService.FindById(id.Value).DisplayName,
                 ServerHistory =  data.ToList(),
                 TimeSeries = data.Select(history => new PingTimeSeries()

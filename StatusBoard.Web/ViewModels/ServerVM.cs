@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StatusBoard.Web.ViewModels
 {
-    public class Server
+    public class ServerVM
     {
         public int ServerId { get; set; }
         [DisplayName("Display Name")]

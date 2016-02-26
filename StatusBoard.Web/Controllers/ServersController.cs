@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using StatusBoard.Core;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models;
 
@@ -17,13 +18,15 @@ namespace StatusBoard.Web.Controllers
         }
 
         // GET: Servers
+        [HttpGet]
         public ActionResult Index()
         {
-            var vm = _serverService.GetAll().Select(x => new ViewModels.Server() {ServerId = x.Id, HostName = x.Hostname, DisplayName = x.DisplayName, IsActive = x.IsActive});
+            var vm = _serverService.GetAll().Select(x => new ViewModels.ServerVM() {ServerId = x.Id, HostName = x.Hostname, DisplayName = x.DisplayName, IsActive = x.IsActive});
             return View(vm);
         }
 
         // GET: Servers/Details/5
+        [HttpGet]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,12 +38,13 @@ namespace StatusBoard.Web.Controllers
             {
                 return HttpNotFound();
             }
-            var vm = new ViewModels.Server() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName, IsActive = server.IsActive };
+            var vm = new ViewModels.ServerVM() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName, IsActive = server.IsActive };
 
             return View(vm);
         }
 
         // GET: Servers/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -51,19 +55,20 @@ namespace StatusBoard.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ServerId,DisplayName,HostName,IsActive")] ViewModels.Server vm)
+        public ActionResult Create(ViewModels.ServerVM vm)
         {
             if (ModelState.IsValid)
             {
                 var server = new Server() {IsActive = vm.IsActive, DisplayName = vm.DisplayName, Hostname = vm.HostName, Id = vm.ServerId};
                 _serverService.Add(server);
-                return RedirectToAction("Index");
+                return RedirectToAction(Constants.Controller.Actions.Index);
             }
 
             return View(vm);
         }
 
         // GET: Servers/Edit/5
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -75,7 +80,7 @@ namespace StatusBoard.Web.Controllers
             {
                 return HttpNotFound();
             }
-            var vm = new ViewModels.Server() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName, IsActive = server.IsActive };
+            var vm = new ViewModels.ServerVM() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName, IsActive = server.IsActive };
             return View(vm);
         }
 
@@ -84,18 +89,19 @@ namespace StatusBoard.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ServerId,DisplayName,HostName,IsActive")] ViewModels.Server vm)
+        public ActionResult Edit(ViewModels.ServerVM vm)
         {
             if (ModelState.IsValid)
             {
                 var server = new Server() { IsActive = vm.IsActive, DisplayName = vm.DisplayName, Hostname = vm.HostName, Id = vm.ServerId };
                 _serverService.Update(server);
-                return RedirectToAction("Index");
+                return RedirectToAction(Constants.Controller.Actions.Index);
             }
             return View(vm);
         }
 
         // GET: Servers/Delete/5
+        [HttpGet]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,7 +113,7 @@ namespace StatusBoard.Web.Controllers
             {
                 return HttpNotFound();
             }
-            var vm = new ViewModels.Server() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName, IsActive = server.IsActive };
+            var vm = new ViewModels.ServerVM() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName, IsActive = server.IsActive };
             return View(vm);
         }
 
@@ -118,7 +124,7 @@ namespace StatusBoard.Web.Controllers
         {
             var server = _serverService.FindById(id);
             _serverService.Remove(server);
-            return RedirectToAction("Index");
+            return RedirectToAction(Constants.Controller.Actions.Index);
         }
 
         protected override void Dispose(bool disposing)

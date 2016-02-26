@@ -87,7 +87,7 @@ namespace StatusBoard.Test.Services
             //make sure the count of returned elements is correct
             Assert.Equal(result.Count, servers.Count);
             //make sure that we properly converted from domain to view model
-            Assert.IsType<Web.ViewModels.Server>(result.First());
+            Assert.IsType<Web.ViewModels.ServerVM>(result.First());
         }
 
         [Fact]
@@ -116,7 +116,7 @@ namespace StatusBoard.Test.Services
 
             //Assert
             //make sure the view model type returned is correct
-            Assert.IsType<ServerDiagnostics>(result);
+            Assert.IsType<ServerDiagnosticsVM>(result);
             //validate that ServerHistory is a collection, and validate that the elements have correct data
             Assert.Collection(result.ServerHistory, x=> Assert.Equal(x.ServerId, 2));
         }

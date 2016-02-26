@@ -199,8 +199,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyInjection\StructureMapScopeModule.cs" />
-    <Compile Include="ViewModels\Server.cs" />
-    <Compile Include="ViewModels\ServerDiagnostics.cs" />
+    <Compile Include="ViewModels\ServerVM.cs" />
+    <Compile Include="ViewModels\ServerDiagnosticsVM.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -1832,9 +1832,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />

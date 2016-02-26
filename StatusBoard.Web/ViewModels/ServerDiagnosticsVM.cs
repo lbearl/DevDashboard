@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace StatusBoard.Web.ViewModels
 {
-    public class ServerDiagnostics
+    public class ServerDiagnosticsVM
     {
         public string HostName { get; set; }
         public List<ServerHistory> ServerHistory { get; set; }

@@ -24,6 +24,7 @@ namespace StatusBoard.Web.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
+        [HttpGet]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -47,7 +48,9 @@ namespace StatusBoard.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password.");
+                    //why did MS think it was in the least bit smart to have a class called Constants
+                    //in the top level AspNet.Identity namespace? That is why the below has additional qualification
+                    ModelState.AddModelError("", Core.Constants.Validation.InvalidUserNameOrPassword);
                 }
             }
 
@@ -57,6 +60,7 @@ namespace StatusBoard.Web.Controllers
 
         //
         // GET: /Account/Register
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -77,7 +81,7 @@ namespace StatusBoard.Web.Controllers
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction(Core.Constants.Controller.Actions.Index, Core.Constants.Controller.Dashboard);
                 }
                 else
                 {
@@ -92,6 +96,7 @@ namespace StatusBoard.Web.Controllers
 
         //
         // GET: /Account/Manage
+        [HttpGet]
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -101,7 +106,7 @@ namespace StatusBoard.Web.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : "";
             ViewBag.HasLocalPassword = HasPassword();
-            ViewBag.ReturnUrl = Url.Action("Manage");
+            ViewBag.ReturnUrl = Url.Action(Core.Constants.Controller.Actions.Manage);
             return View();
         }
 
@@ -113,7 +118,7 @@ namespace StatusBoard.Web.Controllers
         {
             var hasPassword = HasPassword();
             ViewBag.HasLocalPassword = hasPassword;
-            ViewBag.ReturnUrl = Url.Action("Manage");
+            ViewBag.ReturnUrl = Url.Action(Core.Constants.Controller.Actions.Manage);
             if (hasPassword)
             {
                 if (ModelState.IsValid)
@@ -121,7 +126,7 @@ namespace StatusBoard.Web.Controllers
                     var result = await _userManager.ChangePasswordAsync(getGuid(User.Identity.GetUserId()), model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        return RedirectToAction(Core.Constants.Controller.Actions.Manage, new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
                     else
                     {
@@ -132,7 +137,7 @@ namespace StatusBoard.Web.Controllers
             else
             {
                 // User does not have a password so remove any validation errors caused by a missing OldPassword field
-                var state = ModelState["OldPassword"];
+                var state = ModelState[Core.Constants.Controller.Actions.ModelState.OldPassword];
                 if (state != null)
                 {
                     state.Errors.Clear();
@@ -143,7 +148,7 @@ namespace StatusBoard.Web.Controllers
                     var result = await _userManager.AddPasswordAsync(getGuid(User.Identity.GetUserId()), model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+                        return RedirectToAction(Core.Constants.Controller.Actions.Manage, new { Message = ManageMessageId.SetPasswordSuccess });
                     }
                     else
                     {
@@ -165,7 +170,7 @@ namespace StatusBoard.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(Core.Constants.Controller.Actions.Index, Core.Constants.Controller.Dashboard);
         }
 
 
@@ -231,7 +236,7 @@ namespace StatusBoard.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(Core.Constants.Controller.Actions.Index, Core.Constants.Controller.Dashboard);
             }
         }
 

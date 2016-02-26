@@ -1,26 +1,14 @@
 ﻿using System.Web.Mvc;
+using StatusBoard.Core;
 
 namespace StatusBoard.Web.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
-            return RedirectToActionPermanent("Index", "Dashboard");
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return RedirectToActionPermanent(Constants.Controller.Actions.Index, Constants.Controller.Dashboard);
         }
     }
 }
