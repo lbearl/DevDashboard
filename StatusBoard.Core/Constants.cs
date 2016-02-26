@@ -21,6 +21,10 @@
         {
             public const string Dashboard = "Dashboard";
 
+            public const string Home = "Home";
+
+            public const string Servers = "Servers";
+
             /// <summary>
             /// Controller action constants, these should be the names of the actions within controllers
             /// </summary>

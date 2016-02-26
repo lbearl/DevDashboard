@@ -1873,12 +1873,10 @@
     <TypeScriptCompile Include="Scripts\dashboard-app\controllers\DashboardController.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\controllers\ServerController.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\dashboard.module.ts" />
-    <TypeScriptCompile Include="Scripts\dashboard-app\dashboard.route.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\interfaces\Dashboard.Scope.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\models\ServerHistory.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\services\DashboardServices.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\models\Server.ts" />
-    <TypeScriptCompile Include="Scripts\test.ts" />
     <TypeScriptCompile Include="typings\browser.d.ts" />
   </ItemGroup>
   <ItemGroup>

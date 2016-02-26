@@ -15,12 +15,20 @@ namespace StatusBoard.Web
                         "~/Content/bower_components/Microsoft.jQuery.Unobtrusive.Validation/jquery.validate.unobtrusive.js")
                 );
 
-            //bundle for angular + sbadmin2 + signalR
+            //bundle for angular + sbadmin2 + everything else necessary for the SPA dashboard
             bundles.Add(new ScriptBundle("~/bundles/singlepagedashboard").Include(
                 "~/Content/bower_components/angular/angular.js").Include(
                 "~/Content/bower_components/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js").Include(
                 "~/Content/bower_components/metisMenu/dist/metisMenu.js").Include(
-                "~/Content/bower_components/angular-route/angular-route.js"));
+                "~/Content/bower_components/angular-route/angular-route.js").Include(
+                "~/Content/bower_components/d3/d3.js").Include(
+                "~/Content/bower_components/nvd3/build/nv.d3.js").Include(
+                "~/Content/bower_components/angular-nvd3/dist/angular-nvd3.js").Include(
+                "~/Scripts/dashboard-app/dashboard.module.js").Include(
+                "~/Scripts/dashboard-app/models/Server.js").Include(
+                "~/Scripts/dashboard-app/controllers/DashboardController.js").Include(
+                "~/Scripts/dashboard-app/models/ServerHistory.js").Include(
+                "~/Scripts/dashboard-app/controllers/ServerController.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -42,10 +50,11 @@ namespace StatusBoard.Web
                       "~/Content/bower_components/font-awesome/css/font-awesome.css", new CssRewriteUrlTransform()
                    ));
 
-            bundles.Add(new StyleBundle("~/Content/sbadmin").Include(
+            bundles.Add(new StyleBundle("~/Content/dashboard").Include(
                 "~/Content/bower_components/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css",
                 "~/Content/bower_components/startbootstrap-sb-admin-2/dist/css/timeline.css",
-                "~/Content/bower_components/metisMenu/dist/metisMenu.css"));
+                "~/Content/bower_components/metisMenu/dist/metisMenu.css",
+                "~/Content/bower_components/nvd3/build/nv.d3.css"));
         }
     }
 }
