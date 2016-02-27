@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace StatusBoard.Web.ViewModels
@@ -7,10 +8,10 @@ namespace StatusBoard.Web.ViewModels
     {
         public int ServerId { get; set; }
         [DisplayName("Display Name")]
-        [MaxLength(20)]
+        [MaxLength(200)]
         public string DisplayName { get; set; }
         [DisplayName("Host Name")]
-        [MaxLength(20)]
+        [MaxLength(200)]
         public string HostName { get; set; }
         [DisplayName("Active")]
         public bool IsActive { get; set; }

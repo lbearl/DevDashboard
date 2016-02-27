@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Exceptions\CertificateException.cs" />
     <Compile Include="IRepositories\Identity\IRoleRepository.cs" />
     <Compile Include="IRepositories\Identity\IUserRepository.cs" />
     <Compile Include="IRepositories\IRepository.cs" />

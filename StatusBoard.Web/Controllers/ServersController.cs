@@ -10,7 +10,7 @@ namespace StatusBoard.Web.Controllers
     [Authorize]
     public class ServersController : Controller
     {
-        private IServerService _serverService;
+        private readonly IServerService _serverService;
 
         public ServersController(IServerService serverService)
         {

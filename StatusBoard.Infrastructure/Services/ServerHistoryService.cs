@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using StatusBoard.Core.IExternalServices;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models;

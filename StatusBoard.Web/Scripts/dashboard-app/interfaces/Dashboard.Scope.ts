@@ -3,7 +3,7 @@
     import ServerHistory = Models.ServerHistory;
 
     export interface IDashboardScope extends ng.IScope {
-        servers: Server[];
+        servers: {};
     }
 
     export interface IServerScope extends ng.IScope {
@@ -11,5 +11,6 @@
         serverHistory: ServerHistory[];
         chartData: {};
         chartOptions: {};
+        interval: ng.IPromise<any>;
     }
 }

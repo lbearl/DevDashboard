@@ -100,19 +100,19 @@ namespace StatusBoard.Test.Services
             var serviceHistory = new List<ServiceHistory>();
             var serviceHistory2 = new List<ServiceHistory> {new ServiceHistory(){
                 ServerId = 2,
-                PingResponseTime = "20", //must be numeric value as it will be parsed (this probably shows that I made a bad decison in modeling the data)
-                PingStatus = "", Id = 2,
+                PingResponseTime = 20,
+                PingStatus = 200, Id = 2,
                 RecordedOn = DateTime.Now,
                 SslCertificateExpirationDate = DateTime.Now,
-                SslCertificateStatus = ""
+                SslCertificateStatus = true
             } };
 
-            serverHistoryMock.Setup(x => x.GetAllHistoriesForHostById(1)).Returns(serviceHistory);
-            serverHistoryMock.Setup(x => x.GetAllHistoriesForHostById(2)).Returns(serviceHistory2);
+            serverHistoryMock.Setup(x => x.GetPageOfHistoriesForHostById(1, 0, 250)).Returns(serviceHistory);
+            serverHistoryMock.Setup(x => x.GetPageOfHistoriesForHostById(2, 0, 250)).Returns(serviceHistory2);
 
             //Act
             var controller = new ServerActionsController(pingService.Object, serverServiceMock.Object, serverHistoryMock.Object);
-            var result = controller.GetServerHistoryForServer(2);
+            var result = controller.GetServerHistoryForServer(2, 0, 250);
 
             //Assert
             //make sure the view model type returned is correct
@@ -128,32 +128,14 @@ namespace StatusBoard.Test.Services
             //Arrange
             var serviceHistory = new List<ServiceHistory> { new ServiceHistory() { ServerId = 2 } };
 
-            serverHistoryMock.Setup(x => x.GetAllHistoriesForHostById(2)).Returns(serviceHistory);
+            serverHistoryMock.Setup(x => x.GetPageOfHistoriesForHostById(1, 0, 250)).Returns(serviceHistory);
 
             //Act
             var controller = new ServerActionsController(pingService.Object, serverServiceMock.Object, serverHistoryMock.Object);
 
 
             //Assert
-            Assert.Throws<NullReferenceException>(() => controller.GetServerHistoryForServer(2));
-        }
-
-        [Fact]
-        [Trait("Category", "Controller")]
-        public void Assert_Server_Diagnostic_For_Null_Server_Is_Null()
-        {
-            //Arrange
-            var serviceHistory = new List<ServiceHistory>();
-
-            serverHistoryMock.Setup(x => x.GetAllHistoriesForHostById(1)).Returns(serviceHistory);
-
-            //Act
-            var controller = new ServerActionsController(pingService.Object, serverServiceMock.Object, serverHistoryMock.Object);
-            var result = controller.GetServerHistoryForServer(null);
-
-            //Assert
-            //make sure the count of returned elements is correct
-            Assert.Null(result);
+            Assert.Throws<ArgumentNullException>(() => controller.GetServerHistoryForServer(2, 0, 250));
         }
 
     }

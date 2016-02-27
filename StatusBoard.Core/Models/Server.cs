@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace StatusBoard.Core.Models
@@ -9,13 +8,11 @@ namespace StatusBoard.Core.Models
     {
         private ICollection<ServiceHistory> _serviceHistories;
         public int Id { get; set; }
-        [DisplayName("Host Name"), Required]
+        [Required, MaxLength(200)]
         public string Hostname { get; set; }
 
-        [DisplayName("Display Name")]
+        [MaxLength(200)]
         public string DisplayName { get; set; }
-
-        [DisplayName("Is Active")]
         public bool IsActive { get; set; }
 
         public virtual ICollection<ServiceHistory> ServiceHistory
@@ -24,7 +21,5 @@ namespace StatusBoard.Core.Models
 
             set { _serviceHistories = value; }
         }
-
-
     }
 }

@@ -9,5 +9,6 @@ declare module Dashboard.Controllers {
         private serverHistory;
         static $inject: string[];
         constructor($scope: ServerScope, $routeParams: any, $http: any, $interval: ng.IIntervalService);
+        private getData($http, $scope, $routeParams);
     }
 }

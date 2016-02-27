@@ -11,7 +11,7 @@ var Dashboard;
                 this.$location = $location;
                 this.$http = $http;
                 $http({
-                    method: 'GET',
+                    method: 'Post',
                     url: '/api/ServerActions/GetAllServers'
                 }).then(function (response) {
                     //success

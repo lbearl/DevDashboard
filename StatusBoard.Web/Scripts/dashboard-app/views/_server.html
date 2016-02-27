@@ -16,7 +16,7 @@
                         <i class="fa fa-clock-o fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">{{serverHistory[serverHistory.length - 1].PingResponseTime}}</div>
+                        <div class="huge">{{serverHistory[serverHistory.length - 1].PingResponseTime || 'ERR'}}</div>
                         <div>Last Ping (ms)</div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                         <i class="fa fa-calendar fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">{{serverHistory[serverHistory.length - 1].SslCertificateExpiryDate | date : 'shortDate'}}</div>
+                        <div class="huge">{{(serverHistory[serverHistory.length - 1].SslCertificateExpiryDate | date : 'shortDate') || 'ERR'}}</div>
                         <div>SSL Expiration Date</div>
                     </div>
                 </div>

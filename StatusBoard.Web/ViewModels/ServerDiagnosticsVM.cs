@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace StatusBoard.Web.ViewModels
 {
+    /// <summary>
+    /// Server Diagnostics objects used to display 
+    /// </summary>
     public class ServerDiagnosticsVM
     {
         public string HostName { get; set; }
@@ -12,8 +16,9 @@ namespace StatusBoard.Web.ViewModels
     public class ServerHistory
     {
         public int ServerId { get; set; }
-        public string PingStatus { get; set; }
-        public string PingResponseTime { get; set; }
+        public int PingStatus { get; set; }
+
+        public int PingResponseTime { get; set; }
         public bool SslCertificateStatus { get; set; }
 
         public DateTime SslCertificateExpiryDate { get; set; }

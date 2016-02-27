@@ -164,6 +164,10 @@
     <Compile Include="Migrations\201602231030408_RemoveIpAddressFromServers.Designer.cs">
       <DependentUpon>201602231030408_RemoveIpAddressFromServers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602262346449_DataModelFixes.cs" />
+    <Compile Include="Migrations\201602262346449_DataModelFixes.Designer.cs">
+      <DependentUpon>201602262346449_DataModelFixes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Identity\RoleRepository.cs" />
@@ -206,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602231030408_RemoveIpAddressFromServers.resx">
       <DependentUpon>201602231030408_RemoveIpAddressFromServers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602262346449_DataModelFixes.resx">
+      <DependentUpon>201602262346449_DataModelFixes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

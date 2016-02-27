@@ -16,11 +16,11 @@ module Dashboard.Controllers {
         constructor(
             private $scope: DashboardScope,
             private $location: ng.ILocationService,
-            private $http: any) {
+            private $http: ng.IHttpService) {
             //forcibly injecting the servers into the scope for now
 
             $http({
-                method: 'GET',
+                method: 'Post',
                 url: '/api/ServerActions/GetAllServers'
             }).then(response => {
                 //success

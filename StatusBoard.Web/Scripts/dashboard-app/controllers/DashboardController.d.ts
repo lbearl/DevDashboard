@@ -7,6 +7,6 @@ declare module Dashboard.Controllers {
         private $http;
         private servers;
         static $inject: string[];
-        constructor($scope: DashboardScope, $location: ng.ILocationService, $http: any);
+        constructor($scope: DashboardScope, $location: ng.ILocationService, $http: ng.IHttpService);
     }
 }

@@ -1,13 +1,13 @@
 declare module Dashboard.Interfaces {
-    import Server = Models.Server;
     import ServerHistory = Models.ServerHistory;
     interface IDashboardScope extends ng.IScope {
-        servers: Server[];
+        servers: {};
     }
     interface IServerScope extends ng.IScope {
         title: string;
         serverHistory: ServerHistory[];
         chartData: {};
         chartOptions: {};
+        interval: ng.IPromise<any>;
     }
 }

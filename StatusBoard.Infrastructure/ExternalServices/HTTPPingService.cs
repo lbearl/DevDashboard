@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net;
+using StatusBoard.Core.Exceptions;
 using StatusBoard.Core.IExternalServices;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models;
@@ -29,24 +30,26 @@ namespace StatusBoard.Infrastructure.ExternalServices
                 var server = _serverService.FindServerByHostname(hostname);
                 var serviceHistory = new ServiceHistory {Server = server};
                 var request = WebRequest.Create(hostname);
+                //so, this is a terrible hack and probably not truly representative of how long it actually takes to 
+                //get a page... but its the best I can come up with right now.
                 var watch = Stopwatch.StartNew();
                 using (var response = request.GetResponse())
                 {
-                    serviceHistory.PingStatus = ((HttpWebResponse)response).StatusCode.ToString();
+                    serviceHistory.PingStatus = (int) ((HttpWebResponse) response).StatusCode;
                 }
                 watch.Stop();
                 //this is a rough approximation of the time for the request
-                serviceHistory.PingResponseTime = watch.ElapsedMilliseconds.ToString();
+                serviceHistory.PingResponseTime = (int) watch.ElapsedMilliseconds;
 
                 var cert = ((HttpWebRequest) request).ServicePoint.Certificate;
-                if (cert == null) throw new Exception("Certificate was null"); 
+                if (cert == null) throw new CertificateException($"Certificate for {hostname} was null"); 
                 serviceHistory.SslCertificateExpirationDate = DateTime.Parse(cert.GetExpirationDateString());
 
-                serviceHistory.SslCertificateStatus = serviceHistory.SslCertificateExpirationDate > DateTime.Now ? "Valid" : "Expired";
-                serviceHistory.RecordedOn = DateTime.Now;
+                serviceHistory.SslCertificateStatus = serviceHistory.SslCertificateExpirationDate > DateTime.Now;
+                serviceHistory.RecordedOn = DateTime.UtcNow;
                 _serverHistoryService.Add(serviceHistory);
             }
-            catch (Exception)
+            catch (CertificateException)
             {
                 return false;
             }
