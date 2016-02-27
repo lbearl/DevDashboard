@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using StatusBoard.Core;
 using StatusBoard.Core.IServices;
 using StatusBoard.Core.Models;
+using System.Collections.Generic;
 
 namespace StatusBoard.Web.Controllers
 {
@@ -21,7 +22,7 @@ namespace StatusBoard.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var vm = _serverService.GetAll().Select(x => new ViewModels.ServerVM() {ServerId = x.Id, HostName = x.Hostname, DisplayName = x.DisplayName, IsActive = x.IsActive});
+            var vm = _serverService.GetAll().Select(x => new ViewModels.ServerVM() {ServerId = x.Id, HostName = x.Hostname, DisplayName = x.DisplayName});
             return View(vm);
         }
 
@@ -38,7 +39,7 @@ namespace StatusBoard.Web.Controllers
             {
                 return HttpNotFound();
             }
-            var vm = new ViewModels.ServerVM() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName, IsActive = server.IsActive };
+            var vm = new ViewModels.ServerVM() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName};
 
             return View(vm);
         }
@@ -80,7 +81,8 @@ namespace StatusBoard.Web.Controllers
             {
                 return HttpNotFound();
             }
-            var vm = new ViewModels.ServerVM() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName, IsActive = server.IsActive };
+            var vm = new ViewModels.ServerVM() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName};
+            vm.Categories = new SelectList(new List<string>() {"Test1", "test2"});
             return View(vm);
         }
 
@@ -113,7 +115,7 @@ namespace StatusBoard.Web.Controllers
             {
                 return HttpNotFound();
             }
-            var vm = new ViewModels.ServerVM() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName, IsActive = server.IsActive };
+            var vm = new ViewModels.ServerVM() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName};
             return View(vm);
         }
 

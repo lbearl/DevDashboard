@@ -168,6 +168,10 @@
     <Compile Include="Migrations\201602262346449_DataModelFixes.Designer.cs">
       <DependentUpon>201602262346449_DataModelFixes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602270159190_Categories.cs" />
+    <Compile Include="Migrations\201602270159190_Categories.Designer.cs">
+      <DependentUpon>201602270159190_Categories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Identity\RoleRepository.cs" />
@@ -213,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602262346449_DataModelFixes.resx">
       <DependentUpon>201602262346449_DataModelFixes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602270159190_Categories.resx">
+      <DependentUpon>201602270159190_Categories.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

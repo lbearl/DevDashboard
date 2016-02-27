@@ -65,6 +65,7 @@
     <Compile Include="Models\Identity\Role.cs" />
     <Compile Include="Models\Identity\User.cs" />
     <Compile Include="Models\Server.cs" />
+    <Compile Include="Models\ServerCategory.cs" />
     <Compile Include="Models\ServiceHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

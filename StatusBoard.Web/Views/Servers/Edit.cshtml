@@ -1,9 +1,6 @@
 ﻿@model StatusBoard.Web.ViewModels.ServerVM
 
-@section title{Edit}
-
-<h2>Edit</h2>
-
+@section title{Server Admin}
 
 @using (Html.BeginForm())
 {
@@ -16,28 +13,29 @@
         @Html.HiddenFor(model => model.ServerId)
 
         <div class="form-group">
+            @Html.LabelFor(model => model.DisplayName, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DisplayName, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.DisplayName, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.HostName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HostName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HostName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DisplayName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DisplayName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsActive)
-                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                <div class="input-group">
+                    <span id="https-prefix" class="input-group-addon">https://</span>
+                    @Html.EditorFor(model => model.HostName, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
+                @Html.ValidationMessageFor(model => model.HostName, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Categories, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                    @Html.DropDownListFor(x=> x.SelectedServerCategory, Model.Categories, htmlAttributes: new {@class="form-control"})
+                    @Html.ValidationMessageFor(model => model.Categories, "", new { @class = "text-danger" })
             </div>
         </div>
 

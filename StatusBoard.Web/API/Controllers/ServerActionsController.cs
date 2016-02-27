@@ -40,7 +40,7 @@ namespace StatusBoard.Web.API.Controllers
         {
             return _serverService.GetAll().Select(server => new ServerVM()
             {
-                ServerId = server.Id, DisplayName = server.DisplayName, HostName = server.Hostname, IsActive = server.IsActive
+                ServerId = server.Id, DisplayName = server.DisplayName, HostName = server.Hostname
             }).ToList();
         }
 

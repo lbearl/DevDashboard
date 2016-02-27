@@ -1,6 +1,8 @@
 ﻿
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace StatusBoard.Web.ViewModels
 {
@@ -15,5 +17,9 @@ namespace StatusBoard.Web.ViewModels
         public string HostName { get; set; }
         [DisplayName("Active")]
         public bool IsActive { get; set; }
+
+        public string SelectedServerCategory { get; set; }
+        public SelectList Categories { get; set; }
+
     }
 }
