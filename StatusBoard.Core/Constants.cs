@@ -11,7 +11,7 @@
         {
             public static class Routes
             {
-                public const string GetAllServers = "api/ServerActions/GetAllServers";
+                public const string Servers = "api/Servers";
             }
         }
         /// <summary>

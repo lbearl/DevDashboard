@@ -2,6 +2,7 @@
 module Dashboard.Controllers {
     import Server = Models.Server;
     import DashboardScope = Interfaces.IDashboardScope;
+    import ServerService = Dashboard.Services.ServerService;
     "use strict";
 
     export class DashboardController {
@@ -10,27 +11,29 @@ module Dashboard.Controllers {
         public static $inject = [
             '$scope',
             '$location',
-            '$http'
+            '$http',
+            'ServerService'
         ];
 
         constructor(
             private $scope: DashboardScope,
             private $location: ng.ILocationService,
-            private $http: ng.IHttpService) {
+            private $http: ng.IHttpService,
+            private serverService: ServerService) {
             //forcibly injecting the servers into the scope for now
 
-            $http({
-                method: 'Post',
-                url: '/api/ServerActions/GetAllServers'
-            }).then(response => {
-                //success
-                $scope.servers = response.data;
+            $scope.servers = serverResource.query();
 
-            }, response => {
-                //fail
-            });
+            $http({
+                method: 'GET',
+                url: '/api/UserDashboard/GetJiraHighPriorityIssues'
+            }).then(response => {
+                $scope.issues = response.data;
+            }), respose => {
+                //handle the fail case
+            }
         }
     }
 
-    angular.module('dashboard').controller('dashboardController', ['$scope', '$location', '$http', DashboardController]);
+    angular.module('dashboard').controller('dashboardController', ['$scope', '$location', '$http', 'ServerService', DashboardController]);
 }

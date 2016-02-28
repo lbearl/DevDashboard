@@ -34,14 +34,31 @@ namespace StatusBoard.Web.API.Controllers
         /// Gets all of the servers configured in the system
         /// </summary>
         /// <returns>A list of all of the servers</returns>
-        [HttpPost]
-        [Route(Constants.ApiController.Routes.GetAllServers)]
-        public List<ServerVM> GetAllServers()
+        [HttpGet] //in order to conform to REST, this should be a GET
+        [Route(Constants.ApiController.Routes.Servers)]
+        public List<ServerVM> GetServers()
         {
             return _serverService.GetAll().Select(server => new ServerVM()
             {
                 ServerId = server.Id, DisplayName = server.DisplayName, HostName = server.Hostname
             }).ToList();
+        }
+
+        /// <summary>
+        /// Gets all of the servers configured in the system
+        /// </summary>
+        /// <returns>A list of all of the servers</returns>
+        [HttpGet] //in order to conform to REST, this should be a GET
+        [Route(Constants.ApiController.Routes.Servers + "/{id}")]
+        public ServerVM GetServers(int id)
+        {
+            var server = _serverService.FindById(id);
+            return new ServerVM()
+            {
+                ServerId = server.Id,
+                DisplayName = server.DisplayName,
+                HostName = server.Hostname
+            };
         }
 
         /// <summary>
@@ -51,7 +68,7 @@ namespace StatusBoard.Web.API.Controllers
         /// <param name="start">The starting index of the histories</param>
         /// <param name="count">The number of histories to retrieve</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet] //in order to conform to REST, this should be a GET
         [Route("api/ServerActions/{id}/GetServerHistoryForServer/{start}/{count}")]
         public ServerDiagnosticsVM GetServerHistoryForServer(int id, int start, int count)
         {

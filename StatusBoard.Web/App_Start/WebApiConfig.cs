@@ -11,6 +11,10 @@ namespace StatusBoard.Web
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            //remove support for XML, so all results returned by WebAPI actions
+            //will only come out in JSON
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

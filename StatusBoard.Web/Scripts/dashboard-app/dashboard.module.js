@@ -21,7 +21,7 @@ var Dashboard;
         Routes.$inject = ["$routeProvider"];
         return Routes;
     })();
-    var dashboard = angular.module('dashboard', ["ngRoute", "nvd3"])
+    var dashboard = angular.module('dashboard', ["ngRoute", "ngResource", "nvd3"])
         .config(Routes);
 })(Dashboard || (Dashboard = {}));
 //# sourceMappingURL=dashboard.module.js.map

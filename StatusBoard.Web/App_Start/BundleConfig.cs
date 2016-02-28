@@ -21,6 +21,7 @@ namespace StatusBoard.Web
                 "~/Content/bower_components/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js").Include(
                 "~/Content/bower_components/metisMenu/dist/metisMenu.js").Include(
                 "~/Content/bower_components/angular-route/angular-route.js").Include(
+                "~/Content/bower_components/angular-resource/angular-resource.js").Include(
                 "~/Content/bower_components/d3/d3.js").Include(
                 "~/Content/bower_components/nvd3/build/nv.d3.js").Include(
                 "~/Content/bower_components/angular-nvd3/dist/angular-nvd3.js").Include(

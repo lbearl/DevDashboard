@@ -4,6 +4,7 @@
 
     export interface IDashboardScope extends ng.IScope {
         servers: {};
+        issues: {};
     }
 
     export interface IServerScope extends ng.IScope {

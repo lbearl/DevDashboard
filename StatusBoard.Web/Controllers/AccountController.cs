@@ -143,11 +143,7 @@ namespace StatusBoard.Web.Controllers
         private bool HasPassword()
         {
             var user = _userManager.FindById(getGuid(User.Identity.GetUserId()));
-            if (user != null)
-            {
-                return user.PasswordHash != null;
-            }
-            return false;
+            return user?.PasswordHash != null;
         }
 
         public enum ManageMessageId

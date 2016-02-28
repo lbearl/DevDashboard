@@ -81,7 +81,7 @@ namespace StatusBoard.Test.Services
 
             //Act
             var controller = new ServerActionsController(pingService.Object, serverServiceMock.Object, serverHistoryMock.Object);
-            var result = controller.GetAllServers();
+            var result = controller.GetServers();
 
             //Assert
             //make sure the count of returned elements is correct

@@ -74,6 +74,10 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="StructureMap, Version=3.1.7.350, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\structuremap.3.1.7.350\lib\net40\StructureMap.dll</HintPath>
       <Private>True</Private>
@@ -144,6 +148,7 @@
     <Compile Include="DependencyResolution\StructureMapWebApiDependencyScope.cs" />
     <Compile Include="EFConfiguration\RoleConfiguration.cs" />
     <Compile Include="EFConfiguration\UserConfiguration.cs" />
+    <Compile Include="ExternalServices\JiraStatusService.cs" />
     <Compile Include="Migrations\201602200158356_initial.cs" />
     <Compile Include="Migrations\201602200158356_initial.Designer.cs">
       <DependentUpon>201602200158356_initial.cs</DependentUpon>

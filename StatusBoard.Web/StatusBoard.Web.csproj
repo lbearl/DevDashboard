@@ -198,6 +198,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Controllers\UserDashboardController.cs" />
     <Compile Include="DependencyInjection\StructureMapScopeModule.cs" />
     <Compile Include="ViewModels\ServerVM.cs" />
     <Compile Include="ViewModels\ServerDiagnosticsVM.cs" />
@@ -228,6 +229,9 @@
     <Content Include="Content\bower_components\angular-nvd3\dist\angular-nvd3.min.js" />
     <Content Include="Content\bower_components\angular-nvd3\Gruntfile.js" />
     <Content Include="Content\bower_components\angular-nvd3\index.js" />
+    <Content Include="Content\bower_components\angular-resource\angular-resource.js" />
+    <Content Include="Content\bower_components\angular-resource\angular-resource.min.js" />
+    <Content Include="Content\bower_components\angular-resource\index.js" />
     <Content Include="Content\bower_components\angular-route\angular-route.js" />
     <Content Include="Content\bower_components\angular-route\angular-route.min.js" />
     <Content Include="Content\bower_components\angular-route\index.js" />
@@ -1817,6 +1821,11 @@
     <Content Include="Content\bower_components\nvd3\bower.json" />
     <Content Include="Content\bower_components\nvd3\build\nv.d3.min.css.map" />
     <Content Include="Content\bower_components\nvd3\build\nv.d3.min.js.map" />
+    <Content Include="Content\bower_components\angular-resource\.bower.json" />
+    <Content Include="Content\bower_components\angular-resource\angular-resource.min.js.map" />
+    <Content Include="Content\bower_components\angular-resource\bower.json" />
+    <Content Include="Content\bower_components\angular-resource\package.json" />
+    <Content Include="Content\bower_components\angular-resource\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dashboard-app\views\_dashboard.html" />
     <Content Include="Scripts\dashboard-app\views\_server.html" />
@@ -1851,7 +1860,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Identity\" />
     <Folder Include="typings\browser\ambient\" />
     <Folder Include="typings\main\ambient\" />
   </ItemGroup>
@@ -1874,6 +1882,7 @@
     <TypeScriptCompile Include="Scripts\dashboard-app\controllers\ServerController.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\dashboard.module.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\interfaces\Dashboard.Scope.ts" />
+    <TypeScriptCompile Include="Scripts\dashboard-app\interfaces\IServerResource.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\models\ServerHistory.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\services\DashboardServices.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\models\Server.ts" />
