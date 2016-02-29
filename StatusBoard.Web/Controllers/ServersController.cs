@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using StatusBoard.Core;
@@ -12,10 +13,12 @@ namespace StatusBoard.Web.Controllers
     public class ServersController : Controller
     {
         private readonly IServerService _serverService;
+        private readonly IServerCategoryService _serverCategoryService;
 
-        public ServersController(IServerService serverService)
+        public ServersController(IServerService serverService, IServerCategoryService serverCategoryService)
         {
             _serverService = serverService;
+            _serverCategoryService = serverCategoryService;
         }
 
         // GET: Servers
@@ -81,8 +84,13 @@ namespace StatusBoard.Web.Controllers
             {
                 return HttpNotFound();
             }
-            var vm = new ViewModels.ServerVM() { ServerId = server.Id, HostName = server.Hostname, DisplayName = server.DisplayName};
-            vm.Categories = new SelectList(new List<string>() {"Test1", "test2"});
+            var vm = new ViewModels.ServerVM
+            {
+                ServerId = server.Id,
+                HostName = server.Hostname,
+                DisplayName = server.DisplayName,
+                Categories = GetCategories()
+            };
             return View(vm);
         }
 
@@ -137,5 +145,18 @@ namespace StatusBoard.Web.Controllers
             }
             base.Dispose(disposing);
         }
+
+        private IEnumerable<SelectListItem> GetCategories()
+        {
+            var categories = _serverCategoryService.GetAllCategories()
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.CategoryName
+                });
+
+            return new SelectList(categories, "Value", "Text");
+        } 
+
     }
 }

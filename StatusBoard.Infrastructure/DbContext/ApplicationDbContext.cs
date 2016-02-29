@@ -13,7 +13,7 @@ namespace StatusBoard.Infrastructure.DbContext
         //this is a bug! Need to come up with a way to inject the connection string for migrations
         public ApplicationDbContext() : base("default")
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
+            
         }
 
         internal ApplicationDbContext(string ctx) : base(ctx)
@@ -53,5 +53,7 @@ namespace StatusBoard.Infrastructure.DbContext
 
             return base.SaveChanges();
         }
+
+        public System.Data.Entity.DbSet<StatusBoard.Core.Models.ServerCategory> ServerCategories { get; set; }
     }
 }

@@ -199,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\Controllers\UserDashboardController.cs" />
+    <Compile Include="Controllers\ServerCategoriesController.cs" />
     <Compile Include="DependencyInjection\StructureMapScopeModule.cs" />
     <Compile Include="ViewModels\ServerVM.cs" />
     <Compile Include="ViewModels\ServerDiagnosticsVM.cs" />
@@ -225,6 +226,11 @@
   <ItemGroup>
     <Content Include="Content\angular-chart.css" />
     <Content Include="Content\bootswatch-cosmo.css" />
+    <Content Include="Content\bower_components\angular-loading-spinner\angular-loading-spinner.js" />
+    <Content Include="Content\bower_components\angular-loading-spinner\demo\ajax_suspend.php" />
+    <Content Include="Content\bower_components\angular-loading-spinner\demo\angular-spinner.min.js" />
+    <Content Include="Content\bower_components\angular-loading-spinner\demo\index.html" />
+    <Content Include="Content\bower_components\angular-loading-spinner\demo\script.js" />
     <Content Include="Content\bower_components\angular-nvd3\dist\angular-nvd3.js" />
     <Content Include="Content\bower_components\angular-nvd3\dist\angular-nvd3.min.js" />
     <Content Include="Content\bower_components\angular-nvd3\Gruntfile.js" />
@@ -235,6 +241,12 @@
     <Content Include="Content\bower_components\angular-route\angular-route.js" />
     <Content Include="Content\bower_components\angular-route\angular-route.min.js" />
     <Content Include="Content\bower_components\angular-route\index.js" />
+    <Content Include="Content\bower_components\angular-spinner\.gitignore" />
+    <Content Include="Content\bower_components\angular-spinner\angular-spinner.js" />
+    <Content Include="Content\bower_components\angular-spinner\angular-spinner.min.js" />
+    <Content Include="Content\bower_components\angular-spinner\Gruntfile.js" />
+    <Content Include="Content\bower_components\angular-spinner\karma.conf.js" />
+    <Content Include="Content\bower_components\angular-spinner\tests.js" />
     <Content Include="Content\bower_components\angular\angular-csp.css" />
     <Content Include="Content\bower_components\angular\angular.js" />
     <Content Include="Content\bower_components\angular\angular.min.js" />
@@ -1453,6 +1465,10 @@
     <Content Include="Content\bower_components\respondJs\src\matchmedia.addListener.js" />
     <Content Include="Content\bower_components\respondJs\src\matchmedia.polyfill.js" />
     <Content Include="Content\bower_components\respondJs\src\respond.js" />
+    <Content Include="Content\bower_components\spin.js\.gitignore" />
+    <Content Include="Content\bower_components\spin.js\jquery.spin.js" />
+    <Content Include="Content\bower_components\spin.js\LICENSE.txt" />
+    <Content Include="Content\bower_components\spin.js\spin.js" />
     <Content Include="Content\bower_components\startbootstrap-sb-admin-2\dist\css\sb-admin-2.css" />
     <Content Include="Content\bower_components\startbootstrap-sb-admin-2\dist\css\timeline.css" />
     <Content Include="Content\bower_components\startbootstrap-sb-admin-2\dist\js\sb-admin-2.js" />
@@ -1826,6 +1842,25 @@
     <Content Include="Content\bower_components\angular-resource\bower.json" />
     <Content Include="Content\bower_components\angular-resource\package.json" />
     <Content Include="Content\bower_components\angular-resource\README.md" />
+    <Content Include="Content\bower_components\angular-loading-spinner\.bower.json" />
+    <Content Include="Content\bower_components\angular-loading-spinner\bower.json" />
+    <Content Include="Content\bower_components\angular-loading-spinner\package.json" />
+    <Content Include="Content\bower_components\angular-loading-spinner\README.md" />
+    <Content Include="Content\bower_components\spin.js\.bower.json" />
+    <Content Include="Content\bower_components\spin.js\.jshintrc" />
+    <Content Include="Content\bower_components\spin.js\.npmignore" />
+    <Content Include="Content\bower_components\spin.js\bower.json" />
+    <Content Include="Content\bower_components\spin.js\README.md" />
+    <Content Include="Content\bower_components\angular-spinner\.bower.json" />
+    <Content Include="Content\bower_components\angular-spinner\.editorconfig" />
+    <Content Include="Content\bower_components\angular-spinner\.jshintrc" />
+    <Content Include="Content\bower_components\angular-spinner\.npmignore" />
+    <Content Include="Content\bower_components\angular-spinner\.travis.yml" />
+    <Content Include="Content\bower_components\angular-spinner\angular-spinner.min.js.map" />
+    <Content Include="Content\bower_components\angular-spinner\bower.json" />
+    <Content Include="Content\bower_components\angular-spinner\CHANGELOG.md" />
+    <Content Include="Content\bower_components\angular-spinner\package.json" />
+    <Content Include="Content\bower_components\angular-spinner\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dashboard-app\views\_dashboard.html" />
     <Content Include="Scripts\dashboard-app\views\_server.html" />
@@ -1857,6 +1892,11 @@
     <Content Include="Views\Servers\Details.cshtml" />
     <Content Include="Views\Servers\Edit.cshtml" />
     <Content Include="Views\Servers\Index.cshtml" />
+    <Content Include="Views\ServerCategories\Create.cshtml" />
+    <Content Include="Views\ServerCategories\Delete.cshtml" />
+    <Content Include="Views\ServerCategories\Details.cshtml" />
+    <Content Include="Views\ServerCategories\Edit.cshtml" />
+    <Content Include="Views\ServerCategories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

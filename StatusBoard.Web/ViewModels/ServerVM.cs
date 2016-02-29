@@ -18,8 +18,8 @@ namespace StatusBoard.Web.ViewModels
         [DisplayName("Active")]
         public bool IsActive { get; set; }
 
-        public string SelectedServerCategory { get; set; }
-        public SelectList Categories { get; set; }
+        public int SelectedServerCategory { get; set; }
+        public IEnumerable<SelectListItem> Categories { get; set; }
 
     }
 }

@@ -22,7 +22,7 @@
     }
 
 
-    var dashboard = angular.module("dashboard", ["ngRoute", "ngResource", "nvd3"])
+    var dashboard = angular.module("dashboard", ["ngRoute", "ngResource", "nvd3", "ngLoadingSpinner"])
         .config(Routes);
 }
 

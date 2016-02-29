@@ -1,7 +1,9 @@
-﻿using System.Web.Http;
+﻿using System.Data.Entity;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using StatusBoard.Infrastructure.DbContext;
 
 namespace StatusBoard.Web
 {

@@ -25,6 +25,9 @@ namespace StatusBoard.Web
                 "~/Content/bower_components/d3/d3.js").Include(
                 "~/Content/bower_components/nvd3/build/nv.d3.js").Include(
                 "~/Content/bower_components/angular-nvd3/dist/angular-nvd3.js").Include(
+                "~/Content/bower_components/spin.js/spin.js").Include(
+                "~/Content/bower_components/angular-spinner/angular-spinner.js").Include(
+                "~/Content/bower_components/angular-loading-spinner/angular-loading-spinner.js").Include(
                 "~/Scripts/dashboard-app/dashboard.module.js").IncludeDirectory(
                 "~/Scripts/dashboard-app/models", "*.js").IncludeDirectory(
                 "~/Scripts/dashboard-app/controllers", "*.js").IncludeDirectory(

@@ -19,9 +19,7 @@ var Dashboard;
                     url: "/api/UserDashboard/GetJiraHighPriorityIssues"
                 }).then(function (response) {
                     $scope.issues = response.data;
-                }), function (respose) {
-                    //handle the fail case
-                };
+                });
             }
             DashboardController.$inject = [
                 "$scope",

@@ -57,6 +57,8 @@
     <Compile Include="IExternalServices\IPingService.cs" />
     <Compile Include="IExternalServices\IServerStatusService.cs" />
     <Compile Include="IExternalServices\IUnitOfWork.cs" />
+    <Compile Include="IRepositories\IServerCategoryRepository.cs" />
+    <Compile Include="IServices\IServerCategoryService.cs" />
     <Compile Include="IServices\IServerHistoryService.cs" />
     <Compile Include="IServices\IServerService.cs" />
     <Compile Include="IServices\IService.cs" />

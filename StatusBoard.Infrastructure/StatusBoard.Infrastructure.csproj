@@ -177,11 +177,20 @@
     <Compile Include="Migrations\201602270159190_Categories.Designer.cs">
       <DependentUpon>201602270159190_Categories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602290307473_ServerCategoryManyToMany.cs" />
+    <Compile Include="Migrations\201602290307473_ServerCategoryManyToMany.Designer.cs">
+      <DependentUpon>201602290307473_ServerCategoryManyToMany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602290525039_AllCategoryChanges.cs" />
+    <Compile Include="Migrations\201602290525039_AllCategoryChanges.Designer.cs">
+      <DependentUpon>201602290525039_AllCategoryChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Identity\RoleRepository.cs" />
     <Compile Include="Repositories\Identity\UserRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\ServerCategoryRepository.cs" />
     <Compile Include="Repositories\ServerRepository.cs" />
     <Compile Include="Repositories\ServiceHistoryRepository.cs" />
     <Compile Include="ExternalServices\HTTPPingService.cs" />
@@ -189,6 +198,7 @@
     <Compile Include="ExternalServices\RoleStore.cs" />
     <Compile Include="ExternalServices\ServerStatusService.cs" />
     <Compile Include="ExternalServices\UserStore.cs" />
+    <Compile Include="Services\ServerCategoryService.cs" />
     <Compile Include="Services\ServerHistoryService.cs" />
     <Compile Include="Services\ServerService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
@@ -225,6 +235,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602270159190_Categories.resx">
       <DependentUpon>201602270159190_Categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602290307473_ServerCategoryManyToMany.resx">
+      <DependentUpon>201602290307473_ServerCategoryManyToMany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602290525039_AllCategoryChanges.resx">
+      <DependentUpon>201602290525039_AllCategoryChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

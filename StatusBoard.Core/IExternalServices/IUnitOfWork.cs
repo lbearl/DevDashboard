@@ -15,6 +15,7 @@ namespace StatusBoard.Core.IExternalServices
         IUserRepository UserRepository { get; }
         IServerRepository ServerRepository { get; }
         IServiceHistoryRepository ServiceHistoryRepository { get; }
+        IServerCategoryRepository ServerCategoryRepository { get; }
         #endregion
 
         #region Methods

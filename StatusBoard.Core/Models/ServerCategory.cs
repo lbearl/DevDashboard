@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace StatusBoard.Core.Models
 {
-    public class ServerCategory
+    public class ServerCategory : BaseEntity
     {
+        private ICollection<Server> _servers; 
         /// <summary>
         /// The PK and Identfier for this category
         /// </summary>
@@ -24,6 +25,14 @@ namespace StatusBoard.Core.Models
         /// The color is stored as RGB, ranging from HEX 0x000000 to 0xFFFFFF
         /// </summary>
         public int CategoryColor { get; set; }
+
+        /// <summary>
+        /// All servers that have this category
+        /// </summary>
+        public virtual ICollection<Server> Servers {
+            get { return _servers ?? (_servers = new List<Server>()); }
+            set { _servers = value; }
+        } 
 
     }
 }

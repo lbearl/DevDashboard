@@ -32,9 +32,7 @@ module Dashboard.Controllers {
                 url: "/api/UserDashboard/GetJiraHighPriorityIssues"
             }).then(response => {
                 $scope.issues = response.data;
-            }), respose => {
-                //handle the fail case
-            }
+            });
         }
     }
 
