@@ -1,5 +1,5 @@
 ﻿module Dashboard {
-    'use strict';
+    "use strict";
     class Routes {
         static $inject = ["$routeProvider"];
 
@@ -22,7 +22,7 @@
     }
 
 
-    var dashboard = angular.module('dashboard', ["ngRoute", "ngResource", "nvd3"])
+    var dashboard = angular.module("dashboard", ["ngRoute", "ngResource", "nvd3"])
         .config(Routes);
 }
 

@@ -26,6 +26,33 @@
             @Html.ActionLink("Dev Dashboard", StatusBoard.Core.Constants.Controller.Actions.Index, new {controller = StatusBoard.Core.Constants.Controller.Home}, new {@class = "navbar-brand"})
         </div>
         <!-- /.navbar-header -->
+        <ul class="nav navbar-nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li class="divider"></li>
+                    <li>
+                        <a href="@Url.Action(StatusBoard.Core.Constants.Controller.Actions.Login, StatusBoard.Core.Constants.Controller.Account)"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                    <i class="fa fa-cog fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-admin">
+                    <li>
+                        <a href="@Url.Action(StatusBoard.Core.Constants.Controller.Actions.Index, StatusBoard.Core.Constants.Controller.Servers)"><i class="fa fa-server fa-fw"></i> Server Admin</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">

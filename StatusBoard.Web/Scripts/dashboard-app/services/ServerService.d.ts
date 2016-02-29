@@ -6,7 +6,8 @@ declare module Dashboard.Services {
     class ServerService implements Service {
         private builder;
         static $inject: string[];
+        private serverResource;
         constructor(builder: ResourceBuilder);
-        getServers(): ng.resource.IResourceArray<Resources.IServerResourceDefn>;
+        getServers(): any;
     }
 }

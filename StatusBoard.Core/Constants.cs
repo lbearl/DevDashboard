@@ -25,6 +25,8 @@
 
             public const string Servers = "Servers";
 
+            public const string Account = "Account";
+
             /// <summary>
             /// Controller action constants, these should be the names of the actions within controllers
             /// </summary>
@@ -32,6 +34,7 @@
             {
                 public const string Index = "Index";
                 public const string Manage = "Manage";
+                public const string Login = "Login";
 
                 public static class ModelState
                 {

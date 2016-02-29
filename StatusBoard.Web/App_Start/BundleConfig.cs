@@ -25,11 +25,13 @@ namespace StatusBoard.Web
                 "~/Content/bower_components/d3/d3.js").Include(
                 "~/Content/bower_components/nvd3/build/nv.d3.js").Include(
                 "~/Content/bower_components/angular-nvd3/dist/angular-nvd3.js").Include(
-                "~/Scripts/dashboard-app/dashboard.module.js").Include(
-                "~/Scripts/dashboard-app/models/Server.js").Include(
-                "~/Scripts/dashboard-app/controllers/DashboardController.js").Include(
-                "~/Scripts/dashboard-app/models/ServerHistory.js").Include(
-                "~/Scripts/dashboard-app/controllers/ServerController.js"));
+                "~/Scripts/dashboard-app/dashboard.module.js").IncludeDirectory(
+                "~/Scripts/dashboard-app/models", "*.js").IncludeDirectory(
+                "~/Scripts/dashboard-app/controllers", "*.js").IncludeDirectory(
+                "~/Scripts/dashboard-app/factories", "*.js").IncludeDirectory(
+                "~/Scripts/dashboard-app/interfaces", "*.js").IncludeDirectory(
+                "~/Scripts/dashboard-app/resources", "*.js").IncludeDirectory(
+                "~/Scripts/dashboard-app/services", "*.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

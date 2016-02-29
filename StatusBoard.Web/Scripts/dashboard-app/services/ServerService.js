@@ -7,15 +7,16 @@ var Dashboard;
         var ServerService = (function () {
             function ServerService(builder) {
                 this.builder = builder;
+                this.serverResource = builder.getServerResource();
             }
             ServerService.prototype.getServers = function () {
-                return this.builder.getServerResource().query();
+                return this.serverResource.query();
             };
             ServerService.$inject = ["ResourceBuilder"];
             return ServerService;
         })();
         Services.ServerService = ServerService;
-        angular.module('dashboard').factory('ServerService', ['ResourceBuilder', function (builder) { return builder.getServerResource(); }]);
+        angular.module("dashboard").factory("ServerService", ["ResourceBuilder", function (resourceBuilder) { return new ServerService(resourceBuilder); }]);
     })(Services = Dashboard.Services || (Dashboard.Services = {}));
 })(Dashboard || (Dashboard = {}));
-//# sourceMappingURL=DashboardServices.js.map
+//# sourceMappingURL=ServerService.js.map

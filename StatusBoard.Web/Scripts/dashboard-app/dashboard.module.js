@@ -1,6 +1,6 @@
 var Dashboard;
 (function (Dashboard) {
-    'use strict';
+    "use strict";
     var Routes = (function () {
         function Routes($routeProvider) {
             $routeProvider
@@ -21,7 +21,7 @@ var Dashboard;
         Routes.$inject = ["$routeProvider"];
         return Routes;
     })();
-    var dashboard = angular.module('dashboard', ["ngRoute", "ngResource", "nvd3"])
+    var dashboard = angular.module("dashboard", ["ngRoute", "ngResource", "nvd3"])
         .config(Routes);
 })(Dashboard || (Dashboard = {}));
 //# sourceMappingURL=dashboard.module.js.map

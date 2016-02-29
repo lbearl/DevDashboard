@@ -27,8 +27,7 @@ namespace StatusBoard.Infrastructure.ExternalServices
                 Authenticator = new HttpBasicAuthenticator(creds.Split(':')[0], creds.Split(':')[1])
             };
 
-            var jql =
-                "{\"jql\": \"project = ITX AND issuetype = \"General Bug\" AND status = Open AND (priority = \"1\" OR Severity=\"1 (Crash or Data Loss)\") AND assignee in (general-bug-queue, EMPTY)}";
+            const string jql = "{\"jql\": \"project = ITX AND issuetype = \"General Bug\" AND status = Open AND (priority = \"1\" OR Severity=\"1 (Crash or Data Loss)\") AND assignee in (general-bug-queue, EMPTY)}";
 
             var request = new RestRequest("/rest/api/2/search", Method.GET);
             

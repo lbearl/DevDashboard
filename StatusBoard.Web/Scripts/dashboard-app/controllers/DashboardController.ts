@@ -1,7 +1,8 @@
 ﻿/// <reference path="../../../typings/browser/ambient/angular/angular.d.ts" />
 module Dashboard.Controllers {
-    import Server = Models.Server;
+    import Server = Models.IServer;
     import DashboardScope = Interfaces.IDashboardScope;
+    import ServerResource = Resources.IServerResource;
     import ServerService = Dashboard.Services.ServerService;
     "use strict";
 
@@ -9,10 +10,10 @@ module Dashboard.Controllers {
         private servers: Server[];
 
         public static $inject = [
-            '$scope',
-            '$location',
-            '$http',
-            'ServerService'
+            "$scope",
+            "$location",
+            "$http",
+            "ServerService"
         ];
 
         constructor(
@@ -20,13 +21,15 @@ module Dashboard.Controllers {
             private $location: ng.ILocationService,
             private $http: ng.IHttpService,
             private serverService: ServerService) {
-            //forcibly injecting the servers into the scope for now
 
-            $scope.servers = serverResource.query();
+            //a few notes on the next line of code as it does quite a bit: 
+            //  1) It uses ng-resource behind the scenes, but is abstracted away through a ResourceBuilder object
+            //  2) $resource + typescript is the opposite of a match made in heaven (see the interfaces directory for why)
+            $scope.servers = serverService.getServers();
 
             $http({
-                method: 'GET',
-                url: '/api/UserDashboard/GetJiraHighPriorityIssues'
+                method: "GET",
+                url: "/api/UserDashboard/GetJiraHighPriorityIssues"
             }).then(response => {
                 $scope.issues = response.data;
             }), respose => {
@@ -35,5 +38,5 @@ module Dashboard.Controllers {
         }
     }
 
-    angular.module('dashboard').controller('dashboardController', ['$scope', '$location', '$http', 'ServerService', DashboardController]);
+    angular.module("dashboard").controller("dashboardController", ["$scope", "$location", "$http", "ServerService", DashboardController]);
 }

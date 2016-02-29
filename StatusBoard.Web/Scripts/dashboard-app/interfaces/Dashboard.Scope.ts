@@ -1,5 +1,5 @@
 ﻿module Dashboard.Interfaces {
-    import Server = Models.Server;
+    import Server = Models.IServer;
     import ServerHistory = Models.ServerHistory;
 
     export interface IDashboardScope extends ng.IScope {
@@ -9,7 +9,7 @@
 
     export interface IServerScope extends ng.IScope {
         title: string;
-        serverHistory: ServerHistory[];
+        serverHistory: {};
         chartData: {};
         chartOptions: {};
         interval: ng.IPromise<any>;

@@ -1881,11 +1881,15 @@
     <TypeScriptCompile Include="Scripts\dashboard-app\controllers\DashboardController.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\controllers\ServerController.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\dashboard.module.ts" />
+    <TypeScriptCompile Include="Scripts\dashboard-app\factories\ResourceBuilder.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\interfaces\Dashboard.Scope.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\interfaces\IServerResource.ts" />
+    <TypeScriptCompile Include="Scripts\dashboard-app\interfaces\IServerService.ts" />
     <TypeScriptCompile Include="Scripts\dashboard-app\models\ServerHistory.ts" />
-    <TypeScriptCompile Include="Scripts\dashboard-app\services\DashboardServices.ts" />
-    <TypeScriptCompile Include="Scripts\dashboard-app\models\Server.ts" />
+    <TypeScriptCompile Include="Scripts\dashboard-app\resources\Dashboard.Resources.ts" />
+    <TypeScriptCompile Include="Scripts\dashboard-app\services\ServerHistoryService.ts" />
+    <TypeScriptCompile Include="Scripts\dashboard-app\services\ServerService.ts" />
+    <TypeScriptCompile Include="Scripts\dashboard-app\models\IServer.ts" />
     <TypeScriptCompile Include="typings\browser.d.ts" />
   </ItemGroup>
   <ItemGroup>
