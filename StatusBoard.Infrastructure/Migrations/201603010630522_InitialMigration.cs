@@ -1,8 +1,9 @@
 namespace StatusBoard.Infrastructure.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
@@ -28,15 +29,36 @@ namespace StatusBoard.Infrastructure.Migrations
                 .PrimaryKey(t => t.UserId);
             
             CreateTable(
+                "dbo.ServerCategories",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        CategoryName = c.String(maxLength: 50),
+                        CategoryColor = c.Int(nullable: false),
+                        DateCreated = c.DateTime(),
+                        UserCreated = c.String(),
+                        DateModified = c.DateTime(),
+                        UserModified = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Servers",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Hostname = c.String(nullable: false),
+                        Hostname = c.String(nullable: false, maxLength: 200),
+                        DisplayName = c.String(maxLength: 200),
                         IsActive = c.Boolean(nullable: false),
-                        IpAddress = c.String(),
+                        ServerCategoryId = c.Int(nullable: false),
+                        DateCreated = c.DateTime(),
+                        UserCreated = c.String(),
+                        DateModified = c.DateTime(),
+                        UserModified = c.String(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ServerCategories", t => t.ServerCategoryId, cascadeDelete: true)
+                .Index(t => t.ServerCategoryId);
             
             CreateTable(
                 "dbo.ServiceHistories",
@@ -44,10 +66,11 @@ namespace StatusBoard.Infrastructure.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         ServerId = c.Int(nullable: false),
-                        PingStatus = c.String(),
-                        PingResponseTime = c.String(),
-                        SslCertificateStatus = c.String(),
+                        PingStatus = c.Int(nullable: false),
+                        PingResponseTime = c.Int(nullable: false),
+                        SslCertificateStatus = c.Boolean(nullable: false),
                         SslCertificateExpirationDate = c.DateTime(nullable: false),
+                        RecordedOn = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Servers", t => t.ServerId, cascadeDelete: true)
@@ -71,14 +94,17 @@ namespace StatusBoard.Infrastructure.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.ServiceHistories", "ServerId", "dbo.Servers");
+            DropForeignKey("dbo.Servers", "ServerCategoryId", "dbo.ServerCategories");
             DropForeignKey("dbo.UserRole", "UserId", "dbo.User");
             DropForeignKey("dbo.UserRole", "RoleId", "dbo.Role");
             DropIndex("dbo.UserRole", new[] { "UserId" });
             DropIndex("dbo.UserRole", new[] { "RoleId" });
             DropIndex("dbo.ServiceHistories", new[] { "ServerId" });
+            DropIndex("dbo.Servers", new[] { "ServerCategoryId" });
             DropTable("dbo.UserRole");
             DropTable("dbo.ServiceHistories");
             DropTable("dbo.Servers");
+            DropTable("dbo.ServerCategories");
             DropTable("dbo.User");
             DropTable("dbo.Role");
         }

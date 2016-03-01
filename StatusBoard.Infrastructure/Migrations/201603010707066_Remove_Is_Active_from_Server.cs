@@ -1,17 +1,18 @@
 namespace StatusBoard.Infrastructure.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
     
-    public partial class ServiceHistoryRecordedOn : DbMigration
+    public partial class Remove_Is_Active_from_Server : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.ServiceHistories", "RecordedOn", c => c.DateTime(nullable: false));
+            DropColumn("dbo.Servers", "IsActive");
         }
         
         public override void Down()
         {
-            DropColumn("dbo.ServiceHistories", "RecordedOn");
+            AddColumn("dbo.Servers", "IsActive", c => c.Boolean(nullable: false));
         }
     }
 }

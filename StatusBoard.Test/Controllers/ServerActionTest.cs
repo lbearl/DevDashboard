@@ -74,7 +74,7 @@ namespace StatusBoard.Test.Controllers
             for (var i = 0; i < 5; i++)
             {
                 var name = "host" + i;
-                servers.Add(new Server() {Hostname = name, DisplayName = name, IsActive = true, Id = i});
+                servers.Add(new Server() {Hostname = name, DisplayName = name, Id = i});
             }
 
             serverServiceMock.Setup(x => x.GetAll()).Returns(servers);

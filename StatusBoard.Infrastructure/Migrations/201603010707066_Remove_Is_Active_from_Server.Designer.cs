@@ -7,13 +7,13 @@ namespace StatusBoard.Infrastructure.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AllCategoryChanges : IMigrationMetadata
+    public sealed partial class Remove_Is_Active_from_Server : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AllCategoryChanges));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Remove_Is_Active_from_Server));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602290525039_AllCategoryChanges"; }
+            get { return "201603010707066_Remove_Is_Active_from_Server"; }
         }
         
         string IMigrationMetadata.Source

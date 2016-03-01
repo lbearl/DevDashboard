@@ -7,7 +7,6 @@ namespace StatusBoard.Core.Models
     public class Server : BaseEntity
     {
         private ICollection<ServiceHistory> _serviceHistories;
-        private ICollection<ServerCategory> _serverCategory;
         /// <summary>
         /// The identifier of the server
         /// </summary>
@@ -22,10 +21,6 @@ namespace StatusBoard.Core.Models
         /// </summary>
         [MaxLength(200)]
         public string DisplayName { get; set; }
-        /// <summary>
-        /// A flag to determine if the server is active
-        /// </summary>
-        public bool IsActive { get; set; }
 
         /// <summary>
         /// For foreign key on the server category

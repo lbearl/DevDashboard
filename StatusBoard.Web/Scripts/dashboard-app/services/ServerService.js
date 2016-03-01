@@ -1,5 +1,6 @@
 /// <reference path="../../../typings/browser/ambient/angular/angular.d.ts" />
 /// <reference path="../../../typings/browser/ambient/angular-resource/angular-resource.d.ts" />
+"use strict";
 var Dashboard;
 (function (Dashboard) {
     var Services;

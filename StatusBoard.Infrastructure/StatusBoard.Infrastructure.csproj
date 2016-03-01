@@ -149,45 +149,13 @@
     <Compile Include="EFConfiguration\RoleConfiguration.cs" />
     <Compile Include="EFConfiguration\UserConfiguration.cs" />
     <Compile Include="ExternalServices\JiraStatusService.cs" />
-    <Compile Include="Migrations\201602200158356_initial.cs" />
-    <Compile Include="Migrations\201602200158356_initial.Designer.cs">
-      <DependentUpon>201602200158356_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603010630522_InitialMigration.cs" />
+    <Compile Include="Migrations\201603010630522_InitialMigration.Designer.cs">
+      <DependentUpon>201603010630522_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602210537369_BaseObjectTracking.cs" />
-    <Compile Include="Migrations\201602210537369_BaseObjectTracking.Designer.cs">
-      <DependentUpon>201602210537369_BaseObjectTracking.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602210609598_ServiceHistoryRecordedOn.cs" />
-    <Compile Include="Migrations\201602210609598_ServiceHistoryRecordedOn.Designer.cs">
-      <DependentUpon>201602210609598_ServiceHistoryRecordedOn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602221813010_AddServersDisplayName.cs" />
-    <Compile Include="Migrations\201602221813010_AddServersDisplayName.Designer.cs">
-      <DependentUpon>201602221813010_AddServersDisplayName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602231030408_RemoveIpAddressFromServers.cs" />
-    <Compile Include="Migrations\201602231030408_RemoveIpAddressFromServers.Designer.cs">
-      <DependentUpon>201602231030408_RemoveIpAddressFromServers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602262346449_DataModelFixes.cs" />
-    <Compile Include="Migrations\201602262346449_DataModelFixes.Designer.cs">
-      <DependentUpon>201602262346449_DataModelFixes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602270159190_Categories.cs" />
-    <Compile Include="Migrations\201602270159190_Categories.Designer.cs">
-      <DependentUpon>201602270159190_Categories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602290307473_ServerCategoryManyToMany.cs" />
-    <Compile Include="Migrations\201602290307473_ServerCategoryManyToMany.Designer.cs">
-      <DependentUpon>201602290307473_ServerCategoryManyToMany.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602290525039_AllCategoryChanges.cs" />
-    <Compile Include="Migrations\201602290525039_AllCategoryChanges.Designer.cs">
-      <DependentUpon>201602290525039_AllCategoryChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602292138033_ServerServerCategoryOneToMany.cs" />
-    <Compile Include="Migrations\201602292138033_ServerServerCategoryOneToMany.Designer.cs">
-      <DependentUpon>201602292138033_ServerServerCategoryOneToMany.cs</DependentUpon>
+    <Compile Include="Migrations\201603010707066_Remove_Is_Active_from_Server.cs" />
+    <Compile Include="Migrations\201603010707066_Remove_Is_Active_from_Server.Designer.cs">
+      <DependentUpon>201603010707066_Remove_Is_Active_from_Server.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -219,38 +187,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602200158356_initial.resx">
-      <DependentUpon>201602200158356_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603010630522_InitialMigration.resx">
+      <DependentUpon>201603010630522_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602210537369_BaseObjectTracking.resx">
-      <DependentUpon>201602210537369_BaseObjectTracking.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602210609598_ServiceHistoryRecordedOn.resx">
-      <DependentUpon>201602210609598_ServiceHistoryRecordedOn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602221813010_AddServersDisplayName.resx">
-      <DependentUpon>201602221813010_AddServersDisplayName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602231030408_RemoveIpAddressFromServers.resx">
-      <DependentUpon>201602231030408_RemoveIpAddressFromServers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602262346449_DataModelFixes.resx">
-      <DependentUpon>201602262346449_DataModelFixes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602270159190_Categories.resx">
-      <DependentUpon>201602270159190_Categories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602290307473_ServerCategoryManyToMany.resx">
-      <DependentUpon>201602290307473_ServerCategoryManyToMany.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602290525039_AllCategoryChanges.resx">
-      <DependentUpon>201602290525039_AllCategoryChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602292138033_ServerServerCategoryOneToMany.resx">
-      <DependentUpon>201602292138033_ServerServerCategoryOneToMany.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603010707066_Remove_Is_Active_from_Server.resx">
+      <DependentUpon>201603010707066_Remove_Is_Active_from_Server.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
