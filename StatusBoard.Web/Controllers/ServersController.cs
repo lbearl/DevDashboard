@@ -63,7 +63,7 @@ namespace StatusBoard.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var server = new Server() {IsActive = vm.IsActive, DisplayName = vm.DisplayName, Hostname = vm.HostName, Id = vm.ServerId};
+                var server = new Server() {DisplayName = vm.DisplayName, Hostname = vm.HostName, Id = vm.ServerId};
                 _serverService.Add(server);
                 return RedirectToAction(Constants.Controller.Actions.Index);
             }
@@ -88,8 +88,7 @@ namespace StatusBoard.Web.Controllers
             {
                 ServerId = server.Id,
                 HostName = server.Hostname,
-                DisplayName = server.DisplayName,
-                Categories = GetCategories()
+                DisplayName = server.DisplayName
             };
             return View(vm);
         }
@@ -103,7 +102,7 @@ namespace StatusBoard.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var server = new Server() { IsActive = vm.IsActive, DisplayName = vm.DisplayName, Hostname = vm.HostName, Id = vm.ServerId };
+                var server = new Server() {DisplayName = vm.DisplayName, Hostname = vm.HostName, Id = vm.ServerId };
                 _serverService.Update(server);
                 return RedirectToAction(Constants.Controller.Actions.Index);
             }
@@ -145,18 +144,5 @@ namespace StatusBoard.Web.Controllers
             }
             base.Dispose(disposing);
         }
-
-        private IEnumerable<SelectListItem> GetCategories()
-        {
-            var categories = _serverCategoryService.GetAllCategories()
-                .Select(x => new SelectListItem
-                {
-                    Value = x.Id.ToString(),
-                    Text = x.CategoryName
-                });
-
-            return new SelectList(categories, "Value", "Text");
-        } 
-
     }
 }

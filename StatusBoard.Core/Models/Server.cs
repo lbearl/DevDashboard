@@ -23,15 +23,6 @@ namespace StatusBoard.Core.Models
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// For foreign key on the server category
-        /// </summary>
-        public int ServerCategoryId { get; set; }
-
-        /// <summary>
-        /// A reference to the server category associated with the server
-        /// </summary>
-        public virtual ServerCategory ServerCategory {get; set; }
-        /// <summary>
         /// A collection of all server histories for the server
         /// </summary>
         public virtual ICollection<ServiceHistory> ServiceHistory
