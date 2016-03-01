@@ -25,7 +25,7 @@ namespace StatusBoard.Infrastructure.Repositories.Identity
             return Set.FirstOrDefaultAsync(x => x.UserName == username);
         }
 
-        public Task<User> FindByUserNameAsync(System.Threading.CancellationToken cancellationToken, string username)
+        public Task<User> FindByUserNameAsync(CancellationToken cancellationToken, string username)
         {
             return Set.FirstOrDefaultAsync(x => x.UserName == username, cancellationToken);
         }

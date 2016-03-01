@@ -7,19 +7,19 @@ namespace StatusBoard.Core.Models.Identity
     {
         public IdentityRole()
         {
-            this.Id = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
 
         public IdentityRole(string name)
             : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         public IdentityRole(string name, Guid id)
         {
-            this.Name = name;
-            this.Id = id;
+            Name = name;
+            Id = id;
         }
 
         public Guid Id { get; set; }

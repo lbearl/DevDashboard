@@ -14,9 +14,9 @@ namespace StatusBoard.Web.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser, Guid> _userManager;
+        private readonly UserManager<ApplicationUser, Guid> _userManager;
 
-        public AccountController(UserManager<IdentityUser, Guid> userManager)
+        public AccountController(UserManager<ApplicationUser, Guid> userManager)
         {
             _userManager = userManager;
         }
@@ -76,7 +76,7 @@ namespace StatusBoard.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser() { UserName = model.UserName };
+                var user = new ApplicationUser() { UserName = model.UserName };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -100,7 +100,16 @@ namespace StatusBoard.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction(Core.Constants.Controller.Actions.Index, Core.Constants.Controller.Dashboard);
+            return RedirectToAction(Core.Constants.Controller.Actions.Login, Core.Constants.Controller.Account);
+        }
+
+        [HttpGet]
+        public ActionResult Manage(string username)
+        {
+            var user = _userManager.FindByName(username)
+            var manager = new AccountViewModel.ManageUserViewModel();
+            manager.UserName = user.UserName;
+            manager.Email = user.Email
         }
 
 
@@ -125,7 +134,7 @@ namespace StatusBoard.Web.Controllers
             }
         }
 
-        private async Task SignInAsync(IdentityUser user, bool isPersistent)
+        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);

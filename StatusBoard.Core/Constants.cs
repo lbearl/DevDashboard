@@ -35,6 +35,7 @@
                 public const string Index = "Index";
                 public const string Manage = "Manage";
                 public const string Login = "Login";
+                public const string Logoff = "Logoff";
 
                 public static class ModelState
                 {

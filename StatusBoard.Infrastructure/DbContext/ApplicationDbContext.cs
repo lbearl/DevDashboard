@@ -5,10 +5,11 @@ using StatusBoard.Core.Models;
 using StatusBoard.Core.Models.Identity;
 using StatusBoard.Infrastructure.EFConfiguration;
 using System.Web;
+using TrackerEnabledDbContext;
 
 namespace StatusBoard.Infrastructure.DbContext
 {
-    public class ApplicationDbContext : System.Data.Entity.DbContext
+    public class ApplicationDbContext : TrackerContext
     {
         //this is a bug! Need to come up with a way to inject the connection string for migrations
         public ApplicationDbContext() : base("default")
@@ -31,9 +32,10 @@ namespace StatusBoard.Infrastructure.DbContext
             modelBuilder.Configurations.Add(new RoleConfiguration());
         }
 
+
         public override int SaveChanges()
         {
-            var entities = ChangeTracker.Entries().Where(x => x.Entity is BaseEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
+            var entities = ChangeTracker.Entries().Where(x => x.Entity is BaseEntity && (x.State == EntityState.Added || x.State == EntityState.Modified)).ToList();
 
             var currentUsername = HttpContext.Current != null && HttpContext.Current.User != null
                 ? HttpContext.Current.User.Identity.Name
@@ -50,10 +52,8 @@ namespace StatusBoard.Infrastructure.DbContext
                 ((BaseEntity)entity.Entity).DateModified = DateTime.Now;
                 ((BaseEntity)entity.Entity).UserModified = currentUsername;
             }
-
-            return base.SaveChanges();
+            
+            return entities.Any() ? base.SaveChanges(currentUsername) : base.SaveChanges();
         }
-
-        public System.Data.Entity.DbSet<StatusBoard.Core.Models.ServerCategory> ServerCategories { get; set; }
     }
 }

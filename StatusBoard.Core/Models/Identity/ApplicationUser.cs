@@ -3,17 +3,17 @@ using Microsoft.AspNet.Identity;
 
 namespace StatusBoard.Core.Models.Identity
 {
-    public class IdentityUser : IUser<Guid>
+    public class ApplicationUser : IUser<Guid>
     {
-        public IdentityUser()
+        public ApplicationUser()
         {
-            this.Id = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
 
-        public IdentityUser(string userName)
+        public ApplicationUser(string userName)
             : this()
         {
-            this.UserName = userName;
+            UserName = userName;
         }
 
         public Guid Id { get; set; }
@@ -21,4 +21,4 @@ namespace StatusBoard.Core.Models.Identity
         public virtual string PasswordHash { get; set; }
         public virtual string SecurityStamp { get; set; }
     }
-}
+} 

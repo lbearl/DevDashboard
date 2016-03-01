@@ -8,7 +8,7 @@ using StatusBoard.Core.Models.Identity;
 
 namespace StatusBoard.Infrastructure.ExternalServices
 {
-    public class UserStore : IUserRoleStore<IdentityUser, Guid>, IUserPasswordStore<IdentityUser, Guid>, IUserSecurityStampStore<IdentityUser, Guid>
+    public class UserStore : IUserRoleStore<ApplicationUser, Guid>, IUserPasswordStore<ApplicationUser, Guid>, IUserSecurityStampStore<ApplicationUser, Guid>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -17,8 +17,8 @@ namespace StatusBoard.Infrastructure.ExternalServices
             _unitOfWork = unitOfWork;
         }
 
-        #region IUserStore<IdentityUser, Guid> Members
-        public Task CreateAsync(IdentityUser user)
+        #region IUserStore<ApplicationUser, Guid> Members
+        public Task CreateAsync(ApplicationUser user)
         {
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
@@ -29,7 +29,7 @@ namespace StatusBoard.Infrastructure.ExternalServices
             return _unitOfWork.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(IdentityUser user)
+        public Task DeleteAsync(ApplicationUser user)
         {
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
@@ -40,26 +40,26 @@ namespace StatusBoard.Infrastructure.ExternalServices
             return _unitOfWork.SaveChangesAsync();
         }
 
-        public Task<IdentityUser> FindByIdAsync(Guid userId)
+        public Task<ApplicationUser> FindByIdAsync(Guid userId)
         {
             var user = _unitOfWork.UserRepository.FindById(userId);
-            return Task.FromResult<IdentityUser>(GetIdentityUser(user));
+            return Task.FromResult<ApplicationUser>(GetIdentityUser(user));
         }
 
-        public Task<IdentityUser> FindByNameAsync(string userName)
+        public Task<ApplicationUser> FindByNameAsync(string userName)
         {
             var user = _unitOfWork.UserRepository.FindByUserName(userName);
-            return Task.FromResult<IdentityUser>(GetIdentityUser(user));
+            return Task.FromResult<ApplicationUser>(GetIdentityUser(user));
         }
 
-        public Task UpdateAsync(IdentityUser user)
+        public Task UpdateAsync(ApplicationUser user)
         {
             if (user == null)
                 throw new ArgumentException("user");
 
             var u = _unitOfWork.UserRepository.FindById(user.Id);
             if (u == null)
-                throw new ArgumentException("IdentityUser does not correspond to a User entity.", nameof(user));
+                throw new ArgumentException("ApplicationUser does not correspond to a User entity.", nameof(user));
 
             PopulateUser(u, user);
 
@@ -71,14 +71,14 @@ namespace StatusBoard.Infrastructure.ExternalServices
         #region IDisposable Members
         public void Dispose()
         {
-            // Dispose does nothing since we want Unity to manage the lifecycle of our Unit of Work
+
         }
         #endregion
 
        
 
-        #region IUserRoleStore<IdentityUser, Guid> Members
-        public Task AddToRoleAsync(IdentityUser user, string roleName)
+        #region IUserRoleStore<ApplicationUser, Guid> Members
+        public Task AddToRoleAsync(ApplicationUser user, string roleName)
         {
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
@@ -87,7 +87,7 @@ namespace StatusBoard.Infrastructure.ExternalServices
 
             var u = _unitOfWork.UserRepository.FindById(user.Id);
             if (u == null)
-                throw new ArgumentException("IdentityUser does not correspond to a User entity.", nameof(user));
+                throw new ArgumentException("ApplicationUser does not correspond to a User entity.", nameof(user));
             var r = _unitOfWork.RoleRepository.FindByName(roleName);
             if (r == null)
                 throw new ArgumentException("roleName does not correspond to a Role entity.", nameof(roleName));
@@ -98,19 +98,19 @@ namespace StatusBoard.Infrastructure.ExternalServices
             return _unitOfWork.SaveChangesAsync();
         }
 
-        public Task<IList<string>> GetRolesAsync(IdentityUser user)
+        public Task<IList<string>> GetRolesAsync(ApplicationUser user)
         {
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
 
             var u = _unitOfWork.UserRepository.FindById(user.Id);
             if (u == null)
-                throw new ArgumentException("IdentityUser does not correspond to a User entity.", nameof(user));
+                throw new ArgumentException("ApplicationUser does not correspond to a User entity.", nameof(user));
 
             return Task.FromResult<IList<string>>(u.Roles.Select(x => x.Name).ToList());
         }
 
-        public Task<bool> IsInRoleAsync(IdentityUser user, string roleName)
+        public Task<bool> IsInRoleAsync(ApplicationUser user, string roleName)
         {
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
@@ -119,12 +119,12 @@ namespace StatusBoard.Infrastructure.ExternalServices
 
             var u = _unitOfWork.UserRepository.FindById(user.Id);
             if (u == null)
-                throw new ArgumentException("IdentityUser does not correspond to a User entity.", nameof(user));
+                throw new ArgumentException("ApplicationUser does not correspond to a User entity.", nameof(user));
 
             return Task.FromResult<bool>(u.Roles.Any(x => x.Name == roleName));
         }
 
-        public Task RemoveFromRoleAsync(IdentityUser user, string roleName)
+        public Task RemoveFromRoleAsync(ApplicationUser user, string roleName)
         {
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
@@ -133,7 +133,7 @@ namespace StatusBoard.Infrastructure.ExternalServices
 
             var u = _unitOfWork.UserRepository.FindById(user.Id);
             if (u == null)
-                throw new ArgumentException("IdentityUser does not correspond to a User entity.", nameof(user));
+                throw new ArgumentException("ApplicationUser does not correspond to a User entity.", nameof(user));
 
             var r = u.Roles.FirstOrDefault(x => x.Name == roleName);
             u.Roles.Remove(r);
@@ -143,37 +143,37 @@ namespace StatusBoard.Infrastructure.ExternalServices
         }
         #endregion
 
-        #region IUserPasswordStore<IdentityUser, Guid> Members
-        public Task<string> GetPasswordHashAsync(IdentityUser user)
+        #region IUserPasswordStore<ApplicationUser, Guid> Members
+        public Task<string> GetPasswordHashAsync(ApplicationUser user)
         {
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
             return Task.FromResult<string>(user.PasswordHash);
         }
 
-        public Task<bool> HasPasswordAsync(IdentityUser user)
+        public Task<bool> HasPasswordAsync(ApplicationUser user)
         {
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
             return Task.FromResult<bool>(!string.IsNullOrWhiteSpace(user.PasswordHash));
         }
 
-        public Task SetPasswordHashAsync(IdentityUser user, string passwordHash)
+        public Task SetPasswordHashAsync(ApplicationUser user, string passwordHash)
         {
             user.PasswordHash = passwordHash;
             return Task.FromResult(0);
         }
         #endregion
 
-        #region IUserSecurityStampStore<IdentityUser, Guid> Members
-        public Task<string> GetSecurityStampAsync(IdentityUser user)
+        #region IUserSecurityStampStore<ApplicationUser, Guid> Members
+        public Task<string> GetSecurityStampAsync(ApplicationUser user)
         {
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
             return Task.FromResult<string>(user.SecurityStamp);
         }
 
-        public Task SetSecurityStampAsync(IdentityUser user, string stamp)
+        public Task SetSecurityStampAsync(ApplicationUser user, string stamp)
         {
             user.SecurityStamp = stamp;
             return Task.FromResult(0);
@@ -181,42 +181,42 @@ namespace StatusBoard.Infrastructure.ExternalServices
         #endregion
 
         #region Private Methods
-        private User GetUser(IdentityUser identityUser)
+        private User GetUser(ApplicationUser applicationUser)
         {
-            if (identityUser == null)
+            if (applicationUser == null)
                 return null;
 
             var user = new User();
-            PopulateUser(user, identityUser);
+            PopulateUser(user, applicationUser);
 
             return user;
         }
 
-        private void PopulateUser(User user, IdentityUser identityUser)
+        private void PopulateUser(User user, ApplicationUser applicationUser)
         {
-            user.UserId = identityUser.Id;
-            user.UserName = identityUser.UserName;
-            user.PasswordHash = identityUser.PasswordHash;
-            user.SecurityStamp = identityUser.SecurityStamp;
+            user.UserId = applicationUser.Id;
+            user.UserName = applicationUser.UserName;
+            user.PasswordHash = applicationUser.PasswordHash;
+            user.SecurityStamp = applicationUser.SecurityStamp;
         }
 
-        private IdentityUser GetIdentityUser(User user)
+        private ApplicationUser GetIdentityUser(User user)
         {
             if (user == null)
                 return null;
 
-            var identityUser = new IdentityUser();
+            var identityUser = new ApplicationUser();
             PopulateIdentityUser(identityUser, user);
 
             return identityUser;
         }
 
-        private void PopulateIdentityUser(IdentityUser identityUser, User user)
+        private void PopulateIdentityUser(ApplicationUser applicationUser, User user)
         {
-            identityUser.Id = user.UserId;
-            identityUser.UserName = user.UserName;
-            identityUser.PasswordHash = user.PasswordHash;
-            identityUser.SecurityStamp = user.SecurityStamp;
+            applicationUser.Id = user.UserId;
+            applicationUser.UserName = user.UserName;
+            applicationUser.PasswordHash = user.PasswordHash;
+            applicationUser.SecurityStamp = user.SecurityStamp;
         }
         #endregion
     }

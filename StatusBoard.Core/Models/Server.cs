@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StatusBoard.Core.Models
 {
-    
+    [TrackChanges]
     public class Server : BaseEntity
     {
         private ICollection<ServiceHistory> _serviceHistories;

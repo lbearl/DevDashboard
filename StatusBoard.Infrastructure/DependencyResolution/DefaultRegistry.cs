@@ -34,7 +34,7 @@ namespace StatusBoard.Infrastructure.DependencyResolution {
             For<IUnitOfWork>().Use<UnitOfWork>().Ctor<string>().Is("default");
             //for making migrations work
             For<ApplicationDbContext>().Use<ApplicationDbContext>().Ctor<string>().Is("default");
-            For<IUserStore<IdentityUser, Guid>>().Use<UserStore>();
+            For<IUserStore<ApplicationUser, Guid>>().Use<UserStore>();
             For<IPingService>().Use<HttpPingService>();
             Scan(
                 scan => {

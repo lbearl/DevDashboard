@@ -13,7 +13,8 @@ namespace StatusBoard.Core.Models.Identity
         public Guid UserId { get; set; }
         public string UserName { get; set; }
         public string EmailAddress { get; set; }
-        //NOTE: want to make sure that this is actually secure
+        public string PhoneNumber { get; set; }
+
         public virtual string PasswordHash { get; set; }
         public virtual string SecurityStamp { get; set; }
         #endregion

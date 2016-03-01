@@ -13,12 +13,10 @@ namespace StatusBoard.Web.Controllers
     public class ServersController : Controller
     {
         private readonly IServerService _serverService;
-        private readonly IServerCategoryService _serverCategoryService;
 
-        public ServersController(IServerService serverService, IServerCategoryService serverCategoryService)
+        public ServersController(IServerService serverService)
         {
             _serverService = serverService;
-            _serverCategoryService = serverCategoryService;
         }
 
         // GET: Servers

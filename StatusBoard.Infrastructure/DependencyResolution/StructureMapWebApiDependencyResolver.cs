@@ -51,7 +51,7 @@ namespace StatusBoard.Infrastructure.DependencyResolution
         /// </returns>
         public IDependencyScope BeginScope()
         {
-            var child = this.Container.GetNestedContainer();
+            var child = Container.GetNestedContainer();
             return new StructureMapWebApiDependencyResolver(child);
         }
 

@@ -87,7 +87,7 @@ namespace StatusBoard.Test.Controllers
             //make sure the count of returned elements is correct
             Assert.Equal(result.Count, servers.Count);
             //make sure that we properly converted from domain to view model
-            Assert.IsType<Web.ViewModels.ServerVM>(result.First());
+            Assert.IsType<ServerVM>(result.First());
         }
 
 
