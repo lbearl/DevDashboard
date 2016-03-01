@@ -50,5 +50,23 @@
         {
             public const string InvalidUserNameOrPassword = "Invalid username or password.";
         }
+
+        /// <summary>
+        /// Has strings used in the test project
+        /// </summary>
+        public static class Test
+        {
+            public static class Trait
+            {
+                public static class TraitType
+                {
+                    public const string Category = "Category";
+                }
+                public static class TraitTypeValues
+                {
+                    public const string Controller = "Controller";
+                }
+            }
+        }
     }
 }

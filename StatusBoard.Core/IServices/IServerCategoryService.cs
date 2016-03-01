@@ -10,7 +10,5 @@ namespace StatusBoard.Core.IServices
     public interface IServerCategoryService : IService<ServerCategory, int>
     {
         List<ServerCategory> GetAllCategories();
-
-        List<ServerCategory> GetAllCategoriesForServer(int serverId);
     }
 }

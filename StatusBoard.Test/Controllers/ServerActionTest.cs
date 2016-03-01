@@ -9,9 +9,9 @@ using StatusBoard.Core.Models;
 using StatusBoard.Web.API.Controllers;
 using StatusBoard.Web.ViewModels;
 using Xunit;
-using Server = StatusBoard.Core.Models.Server;
+using StatusBoard.Core;
 
-namespace StatusBoard.Test.Services
+namespace StatusBoard.Test.Controllers
 {
     public class ServerActionTest
     {
@@ -31,7 +31,7 @@ namespace StatusBoard.Test.Services
         }
 
         [Fact]
-        [Trait("Category", "Controller")]
+        [Trait(Constants.Test.Trait.TraitType.Category, Constants.Test.Trait.TraitTypeValues.Controller)]
         public void Assert_Trigger_New_Service_History_Returns_Ok_For_Valid_Host()
         {
             //Arrange
@@ -49,7 +49,7 @@ namespace StatusBoard.Test.Services
         }
 
         [Fact]
-        [Trait("Category", "Controller")]
+        [Trait(Constants.Test.Trait.TraitType.Category, Constants.Test.Trait.TraitTypeValues.Controller)]
         public void Assert_Trigger_New_Service_History_Returns_NotFound_For_Invalid_Host()
         {
             //Arrange
@@ -66,7 +66,7 @@ namespace StatusBoard.Test.Services
         }
 
         [Fact]
-        [Trait("Category", "Controller")]
+        [Trait(Constants.Test.Trait.TraitType.Category, Constants.Test.Trait.TraitTypeValues.Controller)]
         public void Assert_Get_All_Servers_Returns_List()
         {
             //Arrange
@@ -90,8 +90,28 @@ namespace StatusBoard.Test.Services
             Assert.IsType<Web.ViewModels.ServerVM>(result.First());
         }
 
+
         [Fact]
-        [Trait("Category", "Controller")]
+        [Trait(Constants.Test.Trait.TraitType.Category, Constants.Test.Trait.TraitTypeValues.Controller)]
+        public void Assert_Get_Servers_Gets_Correct_Server()
+        {
+            //Arrange
+            var server = new Server() { Hostname = "test1", Id = 99 };
+            serverServiceMock.Setup(x => x.FindById(99)).Returns(server);
+
+            //Act
+            var controller = new ServerActionsController(pingService.Object, serverServiceMock.Object, serverHistoryMock.Object);
+            var result = controller.GetServers(server.Id);
+
+            //Assert
+            //make sure the id of the returned view model matches the original domain object server
+            Assert.Equal(server.Id, result.ServerId);
+            //make sure that we properly converted from domain to view model
+            Assert.IsType<ServerVM>(result);
+        }
+
+        [Fact]
+        [Trait(Constants.Test.Trait.TraitType.Category, Constants.Test.Trait.TraitTypeValues.Controller)]
         public void Assert_Server_Diagnostic_For_Correct_Server_Is_Returned()
         {
             //Arrange
@@ -122,7 +142,7 @@ namespace StatusBoard.Test.Services
         }
 
         [Fact]
-        [Trait("Category", "Controller")]
+        [Trait(Constants.Test.Trait.TraitType.Category, Constants.Test.Trait.TraitTypeValues.Controller)]
         public void Assert_Server_Diagnostic_Fails_If_Diagnostic_Data_Missing()
         {
             //Arrange

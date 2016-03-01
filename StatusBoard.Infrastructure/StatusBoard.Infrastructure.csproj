@@ -185,6 +185,10 @@
     <Compile Include="Migrations\201602290525039_AllCategoryChanges.Designer.cs">
       <DependentUpon>201602290525039_AllCategoryChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602292138033_ServerServerCategoryOneToMany.cs" />
+    <Compile Include="Migrations\201602292138033_ServerServerCategoryOneToMany.Designer.cs">
+      <DependentUpon>201602292138033_ServerServerCategoryOneToMany.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Identity\RoleRepository.cs" />
@@ -241,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602290525039_AllCategoryChanges.resx">
       <DependentUpon>201602290525039_AllCategoryChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602292138033_ServerServerCategoryOneToMany.resx">
+      <DependentUpon>201602292138033_ServerServerCategoryOneToMany.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

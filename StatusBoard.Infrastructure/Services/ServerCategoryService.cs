@@ -24,11 +24,6 @@ namespace StatusBoard.Infrastructure.Services
             return _unitOfWork.ServerCategoryRepository.GetAll().ToList();
         }
 
-        public List<ServerCategory> GetAllCategoriesForServer(int serverId)
-        {
-            return _unitOfWork.ServerCategoryRepository.GetAllCategoriesForServer(serverId).ToList();
-        }
-
         public ServerCategory FindById(int id)
         {
             return _unitOfWork.ServerCategoryRepository.FindById(id);
