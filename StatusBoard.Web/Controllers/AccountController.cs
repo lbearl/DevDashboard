@@ -106,10 +106,11 @@ namespace StatusBoard.Web.Controllers
         [HttpGet]
         public ActionResult Manage(string username)
         {
-            var user = _userManager.FindByName(username)
-            var manager = new AccountViewModel.ManageUserViewModel();
-            manager.UserName = user.UserName;
-            manager.Email = user.Email
+            var user = _userManager.FindByName(username);
+            var manager = new AccountViewModel.ManageUserViewModel {UserName = user.UserName};
+            //manager.Email = user.
+
+            return View(manager);
         }
 
 
