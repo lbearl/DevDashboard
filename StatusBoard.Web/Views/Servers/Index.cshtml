@@ -6,7 +6,7 @@
 <h2>Server Admin</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", StatusBoard.Core.Constants.Controller.Actions.Create)
 </p>
 <table class="table">
     <tr>
@@ -34,9 +34,9 @@
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ServerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ServerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ServerId })
+            @Html.ActionLink("Edit", StatusBoard.Core.Constants.Controller.Actions.Edit, new { id=item.ServerId }) |
+            @Html.ActionLink("Details", StatusBoard.Core.Constants.Controller.Actions.Details, new { id=item.ServerId }) |
+            @Html.ActionLink("Delete", StatusBoard.Core.Constants.Controller.Actions.Delete, new { id=item.ServerId })
         </td>
     </tr>
 }

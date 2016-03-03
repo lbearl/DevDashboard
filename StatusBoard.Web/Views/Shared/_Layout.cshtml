@@ -6,7 +6,6 @@
     <title>@RenderSection("title")</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/sitecss")
-    @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,14 +16,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Development Dashboard", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Development Dashboard", StatusBoard.Core.Constants.Controller.Actions.Index, StatusBoard.Core.Constants.Controller.Home, new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
-                    <li>@Html.ActionLink("Server Admin", "Index", "Servers")</li>
+                    <li>@Html.ActionLink("Dashboard", StatusBoard.Core.Constants.Controller.Actions.Index, StatusBoard.Core.Constants.Controller.Dashboard)</li>
+                    <li>@Html.ActionLink("Server Admin", StatusBoard.Core.Constants.Controller.Actions.Index, StatusBoard.Core.Constants.Controller.Servers)</li>
                 </ul>
-                    @Html.Partial("_LoginPartial")
+                    @Html.Partial(StatusBoard.Core.Constants.Controller.PartialViews.LoginPartial)
             </div>
         </div>
     </div>

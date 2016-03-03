@@ -33,14 +33,23 @@
             public static class Actions
             {
                 public const string Index = "Index";
-                public const string Manage = "Manage";
                 public const string Login = "Login";
                 public const string Logoff = "Logoff";
+                public const string Register = "Register";
+                public const string Create = "Create";
+                public const string Edit = "Edit";
+                public const string Details = "Details";
+                public const string Delete = "Delete";
 
                 public static class ModelState
                 {
                     public const string OldPassword = "OldPassword";
                 }
+            }
+
+            public static class PartialViews
+            {
+                public const string LoginPartial = "_LoginPartial";
             }
         }
 
