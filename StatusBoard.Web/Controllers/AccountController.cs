@@ -103,16 +103,6 @@ namespace StatusBoard.Web.Controllers
             return RedirectToAction(Core.Constants.Controller.Actions.Login, Core.Constants.Controller.Account);
         }
 
-        [HttpGet]
-        public ActionResult Manage(string username)
-        {
-            var user = _userManager.FindByName(username);
-            var manager = new AccountViewModel.ManageUserViewModel {UserName = user.UserName};
-            //manager.Email = user.
-
-            return View(manager);
-        }
-
 
         protected override void Dispose(bool disposing)
         {
